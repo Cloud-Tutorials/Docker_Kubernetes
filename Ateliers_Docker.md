@@ -29,74 +29,61 @@
 12. Pour supprimer un conteneur, utiliser 'docker rm', suivi de l'ID ou du nom du conteneur : <br/>E.g. ```docker rm my_container```
 
 ## Atelier 3. créer un Dockerfile, générer l'Image Docker et exécuter un conteneur Docker
-	3.01. Image say_hello_one
-		3.01.a. Dans votre répertore de travail, créer un sous-répertoire say_hello_one 
-				>> mkdir say_hello_one
-		3.01.b. placez-vous dans le répertoire say_hello_one et créer un fichier vierge appelé Dockerfile (sans extension)
-		3.01.c. compléter le fichier avec les commandes Dockerfile suivantes :
-				# créer une image à partir d'une image de base officielle alpine version 3.14 enregistrée dans Docker Hub
-				FROM alpine:3.14
-				# exécuter la commande linux : echo "Hello One"
-				CMD ["echo", "Hello One"]
-		3.01.d.	Lister vos images :
-				>> docker image ls
-		3.01.e.	Lister vos conteneurs :
-				>> docker container  ls
-		3.01.f.	Générer l'image say_hello_one
-				>> docker build --tag say_hello_one .
-		3.01.g.	Lister encore une fois vos images :
-				>> docker image ls
-				Vous venez de créer votre première Image Docker, félicitations !
-				Remarquez la date de création de l'image ainsi que sa taille.
-		3.01.h.	Exécuter le conteneur say_hello_one :
-				>> docker run say_hello_one
-				Le message 'Hello One' est affiché sur votre console. Félicitations, vous venez d'exécuter votre premier conteneur. 
-	3.02. Image say_hello_two
-		3.02.a. Dans votre répertore de travail, créer un sous-répertoire say_hello_two 
-				>> mkdir say_hello_two
-		3.02.b. placez-vous dans le répertoire say_hello_two et créer un fichier vierge appelé Dockerfile (sans extension)
-		3.02.c. compléter le fichier avec les commandes Dockerfile suivantes :
-				# créer une image à partir d'une image de base officielle ubuntu version 20.04 enregistrée dans Docker Hub
-				FROM ubuntu:20.04
-				# exécuter la commande linux : echo "Hello Two"
-				CMD ["echo", "Hello Two"]
-		3.02.d.	Lister vos images :
-				>> docker image ls
-		3.02.e.	Lister vos conteneurs :
-				>> docker container  ls
-		3.02.f.	Générer l'image say_hello_two
-				>> docker build --tag say_hello_two .
-		3.02.g.	Lister encore une fois vos images :
-				>> docker image ls
-				Comparer la date de création et la taille des images say_hello_one et say_hello_two
-		3.01.h.	Exécuter le conteneur say_hello_two en mode intéractif :
-				>> docker run --interactive --tty say_hello_two /bin/bash
-	3.03. Image say_hello_three
-		3.03.a. Dans votre répertore de travail, créer un sous-répertoire say_hello_three 
-				>> mkdir say_hello_three
-		3.03.b. placez-vous  dans le répertoire say_hello_three et créer un fichier source d'une application node js simple (say_hello_three.js)
-				
-		3.03.c. dans le répertoire say_hello_three créer un fichier vierge appelé Dockerfile (sans extension)
-		3.03.d. compléter le fichier avec les commandes Dockerfile suivantes :
-				# créer une image à partir d'une image de base officielle Node;js version 14 enregistrée dans Docker Hub
-				FROM node:14
-				# dans le conteneur, le répertoire de travail sera '/usr/src/app'
-				WORKDIR /usr/src/app
-				# copier tpus les packages json ainsi que mon application (say_hello_three.js) dans le conteneur
-				COPY package*.json say_hello_three.js ./
-				# installer les dépendances de l'application
-				RUN npm install
-				# copier tous les autres fichiers de l'application (images, etc.) dans le conteneur
-				COPY . .
-				# exposer le port sur lequel l'application sera accessible
-				EXPOSE 8080
-				# enfin, la commande pour lancer l'application
-				CMD ["node", "say_hello_three.js"]	
-		3.03.e.	Générer l'image say_hello_two
-				>> docker build --tag say_hello_two .
-		3.03.f.	Exécuter le conteneur say_hello_two en mode intéractif :
-				>> docker run -p 8080:8080 say_hello_two
-				votre application est maintenant accessible via http://localhost:8080
+### 1. Image say_hello_one
+1. Dans votre répertore de travail, créer un sous-répertoire say_hello_one : <br/>```mkdir say_hello_one```
+2. placez-vous dans le répertoire say_hello_one et créer un fichier vierge appelé Dockerfile (sans extension)
+3. compléter le fichier avec les commandes Dockerfile suivantes :<br/>
+  ```
+	#créer une image à partir d'une image de base officielle alpine version 3.14 enregistrée dans Docker Hub
+	FROM alpine:3.14
+	#exécuter la commande linux : echo "Hello One"
+	CMD ["echo", "Hello One"]
+  ```
+4. Lister vos images : <br/>```docker image ls```
+5. Lister vos conteneurs : <br/>```docker container  ls```
+6. Générer l'image say_hello_one : <br/>```docker build --tag say_hello_one .```
+7. Lister encore une fois vos images : <br/>```docker image ls```<br/>Vous venez de créer votre première Image Docker, félicitations !<br/>Remarquez la date de création de l'image ainsi que sa taille.
+8. Exécuter le conteneur say_hello_one : <br/>```docker run say_hello_one```<br/>Le message 'Hello One' est affiché sur votre console. Félicitations, vous venez d'exécuter votre premier conteneur Docker. 
+### 2. Image say_hello_two
+1. Dans votre répertore de travail, créer un sous-répertoire say_hello_two : <br/>```mkdir say_hello_two```
+2. placez-vous dans le répertoire say_hello_two et créer un fichier vierge appelé Dockerfile (sans extension)
+3. compléter le fichier avec les commandes Dockerfile suivantes :
+   ```
+	#créer une image à partir d'une image de base officielle ubuntu version 20.04 enregistrée dans Docker Hub
+	FROM ubuntu:20.04
+	#exécuter la commande linux : echo "Hello Two"
+	CMD ["echo", "Hello Two"]
+   ```
+4. Lister vos images : <br/>```docker image ls```
+5. Lister vos conteneurs : <br/>```docker container  ls```
+6. Générer l'image say_hello_two : <br/>```docker build --tag say_hello_two .```
+7. Lister encore une fois vos images : <br/>```docker image ls```<br/>Comparer la date de création et la taille des images say_hello_one et say_hello_two
+8. Exécuter le conteneur say_hello_two en mode intéractif : <br/>```docker run --interactive --tty say_hello_two /bin/bash```
+### 3. Image say_hello_three
+1. Dans votre répertore de travail, créer un sous-répertoire say_hello_three : <br/>```mkdir say_hello_three```
+2. Placez-vous  dans le répertoire say_hello_three et créer un fichier source d'une application node js simple (say_hello_three.js)<br/>
+   ```
+   ```
+3. Dans le répertoire say_hello_three créer un fichier vierge appelé Dockerfile (sans extension)
+4. compléter le fichier avec les commandes Dockerfile suivantes :<br/>
+```
+#créer une image à partir d'une image de base officielle Node;js version 14 enregistrée dans Docker Hub
+FROM node:14
+#dans le conteneur, le répertoire de travail sera '/usr/src/app'
+WORKDIR /usr/src/app
+#copier tpus les packages json ainsi que mon application (say_hello_three.js) dans le conteneur
+COPY package*.json say_hello_three.js ./
+#installer les dépendances de l'application
+RUN npm install
+#copier tous les autres fichiers de l'application (images, etc.) dans le conteneur
+COPY . .
+#exposer le port sur lequel l'application sera accessible
+EXPOSE 8080
+#enfin, la commande pour lancer l'application
+CMD ["node", "say_hello_three.js"]
+```
+5. Générer l'image say_hello_two : <br/>```docker build --tag say_hello_two .```
+6. Exécuter le conteneur say_hello_two en mode intéractif : <br/>```docker run -p 8080:8080 say_hello_two```<br/>Votre application est maintenant accessible via ```http://localhost:8080```
 				
 ## Atelier 4. publier une image sur le repository Docker Hub
 	4.01. Si vous n'avez pas de compte et de dépôt (repository) public sur Docker Hub, vous devez d'abord les créer :
