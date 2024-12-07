@@ -1,36 +1,18 @@
 # Prise en main de Docker
-## Atelier 1. télécharger et installer docker 
-	1.01. Aller sur le site : [docker-desktop](#https://www.docker.com/products/docker-desktop)
-	1.02. Télécharger la version compatible avec votre machine
-          Remarques :
-	      - Docker Desktop exige une version récente d'OS, sinon il faut passer par un toolbox-docker-desktop.
-	      - Pour cet atelier, on travaille sur Ubuntu 22.04.1
-	1.03. Mettre à jour la liste des packages existants sur votre machine :
- 		  >> sudo apt update
-	1.04. Installer les paquets permettant à APT d'utiliser des paquets via HTTPS :	
-		  >> sudo apt install apt-transport-https ca-certificates curl software-properties-common
-	1.05. Ajouter la clé GPG du référentiel officiel Docker à votre système :
-		  >> curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-	1.06. Ajouter le référentiel Docker aux sources APT :
-		  >> sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
-		  N.B. Cela mettra également à jour votre base de données de packages avec les packages Docker du référentiel nouvellement ajouté.
-	1.07. Vérifier le cache APT pour vous assurer que vous êtes sur le point d'installer à partir du référentiel Docker au lieu du référentiel Ubuntu par défaut :
-		  >> apt-cache policy docker-ce
-		  N.B. Noter que docker-ce n'est pas encore installé, mais le candidat à l'installation provient du référentiel Docker pour Ubuntu 22.04
-	1.08. Installer Docker :
-		  >> sudo apt install docker-ce
-	1.09. Docker est maintenant installé et le démon est démarré. Vérifier qu'il est en cours d'exécution :
-		  >> sudo systemctl status docker
-		  N.B. L'output de la commande doit montrer que le service est actif et en cours d’exécution.
-	1.10. Si vous souhaitez éviter de taper 'sudo' à chaque fois que vous exécutez la commande docker, ajoutez votre nom d'utilisateur (username) au groupe docker :	
-		  >> sudo usermod -aG docker talha
-	1.11. Pour appliquer la nouvelle appartenance au groupe, déconnectez-vous du serveur et reconnectez-vous, ou tout simplement saisissez la commande suivante :
-		  >> su - talha
-		  N.B. Vous serez invité à saisir votre mot de passe utilisateur pour continuer.
-	1.12. Confirmer que votre utilisateur est maintenant ajouté au groupe Docker en tapant la commande :
-		  >> groups
-	1.13. Vérifier que Docker fonctionne en affichant sa version par exemple :
-		  >> docker version
+## Atelier 1. télécharger et installer docker sur une VM Ubuntu 22.04.1
+1. Aller sur le site : [docker-desktop](https://www.docker.com/products/docker-desktop)
+2. Télécharger la version compatible avec votre machine. <br/><b>Remarques : </b><i>Docker Desktop exige une version récente d'OS, sinon il faut passer par un toolbox-docker-desktop.</i>
+3. Mettre à jour la liste des packages existants sur votre machine : ```bash $ sudo apt update```
+4. Installer les paquets permettant à APT d'utiliser des paquets via HTTPS : ```bash $ sudo apt install apt-transport-https ca-certificates curl software-properties-common```
+5. Ajouter la clé GPG du référentiel officiel Docker à votre système : ```bash $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -```
+6. Ajouter le référentiel Docker aux sources APT : ```bash $ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"``` <br/><b>Remarques : </b><i>Cela mettra également à jour votre base de données de packages avec les packages Docker du référentiel nouvellement ajouté.</i>
+7. Vérifier le cache APT pour vous assurer que vous êtes sur le point d'installer à partir du référentiel Docker au lieu du référentiel Ubuntu par défaut : ```bash $ apt-cache policy docker-ce``` <br/><b>Remarques : </b><i>Noter que docker-ce n'est pas encore installé, mais le candidat à l'installation provient du référentiel Docker pour Ubuntu 22.04</i>
+8. Installer Docker : ```bash $ sudo apt install docker-ce```
+9. Docker est maintenant installé et le démon est démarré. Vérifier qu'il est en cours d'exécution : ```bash $ sudo systemctl status docker``` <br/><b>Remarques : </b><i>L'output de la commande doit montrer que le service est actif et en cours d’exécution.</i>
+10. Si vous souhaitez éviter de taper 'sudo' à chaque fois que vous exécutez la commande docker, ajoutez votre nom d'utilisateur (username) au groupe docker. ```bash $ sudo usermod -aG docker username```
+11. Pour appliquer la nouvelle appartenance au groupe, déconnectez-vous du serveur et reconnectez-vous, ou tout simplement saisissez la commande suivante : ```bash $ su - username``` <br/><b>Remarques : </b><i>Vous serez invité à saisir votre mot de passe utilisateur pour continuer.</i>
+12. Confirmer que votre utilisateur est maintenant ajouté au groupe Docker en tapant la commande : ```bash $ groups```
+13. Vérifier que Docker fonctionne en affichant sa version par exemple : ```bash $ docker version```
 
 ## Atelier 2. Manipuler les images et les conteneurs Docker
 	2.01. Utiliser Docker consiste à lui passer une chaîne d'options et de sous-commandes suivies d'arguments. La syntaxe prend la forme suivante :
