@@ -14,7 +14,7 @@
 12. Confirmer que votre utilisateur est maintenant ajouté au groupe Docker en tapant la commande : <br/>```groups```
 13. Vérifier que Docker fonctionne en affichant sa version par exemple : <br/>```docker version```
 
-## Atelier 2. Manipuler les images et les conteneurs Docker
+## Atelier 2. manipuler les images et les conteneurs Docker
 1. Utiliser Docker consiste à lui passer une chaîne d'options et de sous-commandes suivies d'arguments. La syntaxe prend la forme suivante :<br/>```docker [option] [subcommand] [arguments]```<br/>Pour afficher toutes les sous-commandes Docker disponibles, taper :<br/>```docker```<br/>Vérifier le résultat et analyser certaines sous-commandes. Pour afficher les options disponibles pour une sous-commande spécifique, saisissez :<br/>```docker subcommand --help```<br/>E.g. ```docker build --help```
 2. Pour vérifier si vous pouvez accéder aux images de Docker Hub et les télécharger, saisissez :<br/>```docker run hello-world```<br/>L'output indiquera que Docker fonctionne correctement et qu'il n'a initialement pas pu trouver l'image hello-world localement, il a donc téléchargé l'image depuis Docker Hub, qui est le référentiel par défaut.
 3. Vous pouvez rechercher des images disponibles sur Docker Hub en utilisant la commande docker avec la sous-commande search. Par exemple, pour rechercher l'image Ubuntu, saisissez :<br/>```docker search ubuntu```<br/>Cette commande explorera Docker Hub et renverra une liste de toutes les images dont le nom correspond à la chaîne de recherche.<br/><b>Remarques : </b><i>La colonne [OK] indique une image construite et soutenue par l'organisation derrière le projet.</i>
@@ -28,7 +28,7 @@
 11. Pour arrêter un conteneur en cours d'exécution, utiliser 'docker stop', suivi de l'ID ou du nom du conteneur : <br/>E.g. ```docker stop my_running_container```
 12. Pour supprimer un conteneur, utiliser 'docker rm', suivi de l'ID ou du nom du conteneur : <br/>E.g. ```docker rm my_container```
 
-## Atelier 3. Créer un Dockerfile, générer l'Image Docker et exécuter un conteneur Docker
+## Atelier 3. créer un Dockerfile, générer l'Image Docker et exécuter un conteneur Docker
 	3.01. Image say_hello_one
 		3.01.a. Dans votre répertore de travail, créer un sous-répertoire say_hello_one 
 				>> mkdir say_hello_one
@@ -98,7 +98,7 @@
 				>> docker run -p 8080:8080 say_hello_two
 				votre application est maintenant accessible via http://localhost:8080
 				
-## Atelier 4. Publier une image sur le repository Docker Hub
+## Atelier 4. publier une image sur le repository Docker Hub
 	4.01. Si vous n'avez pas de compte et de dépôt (repository) public sur Docker Hub, vous devez d'abord les créer :
 		  - Aller sur : https://hub.docker.com/ 
 		  - Créer un compte et garder le nom d'utilisateur qui vous sera utile par la suite (E.g. mohamedtalha)
