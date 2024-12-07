@@ -1,5 +1,5 @@
-# Atelier 1. Télécharger et installer docker 
-	1.01. Aller sur le site : https://www.docker.com/products/docker-desktop
+# Atelier 1. télécharger et installer docker 
+	1.01. Aller sur le site : [docker-desktop](https://www.docker.com/products/docker-desktop)
 	1.02. Télécharger la version compatible avec votre machine
           Remarques :
 	      - Docker Desktop exige une version récente d'OS, sinon il faut passer par un toolbox-docker-desktop.
