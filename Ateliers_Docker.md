@@ -1,8 +1,13 @@
-#Atelier 1. Télécharger et installer docker (exemple d'installation dans Ubuntu 22.04.1)
+# Atelier 1. Télécharger et installer docker 
 	1.01. Aller sur le site : https://www.docker.com/products/docker-desktop
-	1.02. Télécharger la version compatible avec votre machine (n'accepte que les OS récents, sinon il faut passer par un toolbox-docker-desktop mais n'est pas stable)
+	1.02. Télécharger la version compatible avec votre machine
+          Remarques :
+	      - Docker Desktop exige une version récente d'OS, sinon il faut passer par un toolbox-docker-desktop.
+	      - Pour cet atelier, on travaille sur Ubuntu 22.04.1
 	1.03. Mettre à jour la liste des packages existants sur votre machine :
-		  >> sudo apt update
+		  ```bash
+    			sudo apt update
+       		   ```
 	1.04. Installer les paquets permettant à APT d'utiliser des paquets via HTTPS :	
 		  >> sudo apt install apt-transport-https ca-certificates curl software-properties-common
 	1.05. Ajouter la clé GPG du référentiel officiel Docker à votre système :
@@ -28,7 +33,7 @@
 	1.13. Vérifier que Docker fonctionne en affichant sa version par exemple :
 		  >> docker version
 
-Atelier 2. Manipuler les images et les conteneurs Docker
+# Atelier 2. Manipuler les images et les conteneurs Docker
 	2.01. Utiliser Docker consiste à lui passer une chaîne d'options et de sous-commandes suivies d'arguments. La syntaxe prend la forme suivante :
 		  >> docker [option] [subcommand] [arguments]
 		  Pour afficher toutes les sous-commandes Docker disponibles, taper :
@@ -65,7 +70,7 @@ Atelier 2. Manipuler les images et les conteneurs Docker
 	2.12. Pour supprimer un conteneur, utiliser 'docker rm', suivi de l'ID ou du nom du conteneur :
 		  E.g. >> docker rm my_container
 
-Atelier 3. Créer un Dockerfile, générer l'Image Docker et exécuter un conteneur Docker
+# Atelier 3. Créer un Dockerfile, générer l'Image Docker et exécuter un conteneur Docker
 	3.01. Image say_hello_one
 		3.01.a. Dans votre répertore de travail, créer un sous-répertoire say_hello_one 
 				>> mkdir say_hello_one
@@ -135,7 +140,7 @@ Atelier 3. Créer un Dockerfile, générer l'Image Docker et exécuter un conten
 				>> docker run -p 8080:8080 say_hello_two
 				votre application est maintenant accessible via http://localhost:8080
 				
-Atelier 4. Publier une image sur le repository Docker Hub
+# Atelier 4. Publier une image sur le repository Docker Hub
 	4.01. Si vous n'avez pas de compte et de dépôt (repository) public sur Docker Hub, vous devez d'abord les créer :
 		  - Aller sur : https://hub.docker.com/ 
 		  - Créer un compte et garder le nom d'utilisateur qui vous sera utile par la suite (E.g. mohamedtalha)
