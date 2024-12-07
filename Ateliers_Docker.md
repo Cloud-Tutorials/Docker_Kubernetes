@@ -63,6 +63,15 @@
 1. Dans votre répertore de travail, créer un sous-répertoire say_hello_three : <br/>```mkdir say_hello_three```
 2. Placez-vous  dans le répertoire say_hello_three et créer un fichier source d'une application node js simple (say_hello_three.js)<br/>
    ```
+	const http = require('http');
+	const server = http.createServer((req, res) => {
+	  res.writeHead(200, { 'Content-Type': 'text/plain' });
+	  res.end('Hello, je suis un script JS!\n');
+	});
+	const port = process.env.PORT || 3000;
+	server.listen(port, () => {
+	  console.log(`Server running on http://localhost:${port}`);
+	});
    ```
 3. Dans le répertoire say_hello_three créer un fichier vierge appelé Dockerfile (sans extension)
 4. compléter le fichier avec les commandes Dockerfile suivantes :<br/>
