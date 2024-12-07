@@ -15,41 +15,18 @@
 13. Vérifier que Docker fonctionne en affichant sa version par exemple : <br/>```docker version```
 
 ## Atelier 2. Manipuler les images et les conteneurs Docker
-	2.01. Utiliser Docker consiste à lui passer une chaîne d'options et de sous-commandes suivies d'arguments. La syntaxe prend la forme suivante :
-		  >> docker [option] [subcommand] [arguments]
-		  Pour afficher toutes les sous-commandes Docker disponibles, taper :
-		  >> docker
-		  Vérifier le résultat et analyser certaines sous-commandes. Pour afficher les options disponibles pour une sous-commande spécifique, saisissez :
-		  >> docker subcommand --help
-		  E.g. >> docker build --help
-	2.02. Pour vérifier si vous pouvez accéder aux images de Docker Hub et les télécharger, saisissez :
-		  >> docker run hello-world
-		  L'output indiquera que Docker fonctionne correctement et qu'il n'a initialement pas pu trouver l'image hello-world localement, il a donc téléchargé l'image depuis Docker Hub, qui est le référentiel par défaut.
-	2.03. Vous pouvez rechercher des images disponibles sur Docker Hub en utilisant la commande docker avec la sous-commande search. Par exemple, pour rechercher l'image Ubuntu, saisissez :
-		  >> docker search ubuntu
-		  Cette commande explorera Docker Hub et renverra une liste de toutes les images dont le nom correspond à la chaîne de recherche.
-		  N.B. La colonne [OK] indique une image construite et soutenue par l'organisation derrière le projet.
-	2.04. Une fois que vous ayez identifié l’image que vous souhaitez utiliser, vous pouvez la télécharger sur votre machine locale à l’aide de la sous-commande pull.
-	      E.g. exécuter la commande suivante pour télécharger l'image officielle d'Ubuntu sur votre machine locale :
-		  >> docker pull ubuntu
-	2.05. Pour voir les images qui ont été téléchargées sur votre machine, taper :
-		  >> docker images
-	2.06. Exécuter des conteneur Docker : 
-		  Le conteneur hello-world que vous avez exécuté à l'étape précédente est un exemple de conteneur qui s'exécute et se ferme après avoir émis un message de test. Les conteneurs peuvent être bien plus utiles que cela et ils peuvent être interactifs. Exécuter un conteneur en utilisant la dernière image d'Ubuntu :		  
-		  >> docker run -it ubuntu
-		  N.B. La combinaison des options -i et -t vous donne un accès shell interactif au conteneur.
-	2.07. Après avoir utilisé Docker pendant un certain temps, vous aurez de nombreux conteneurs actifs (en cours d'exécution) et inactifs sur votre ordinateur. Pour afficher ceux qui sont actifs, utilisez :
-		  >> docker ps
-	2.08. Pour afficher tous les conteneurs, actifs et inactifs, exécuter 'docker ps' avec l'option -a :
-		  >> docker ps -a
-	2.09. Pour afficher le dernier conteneur que vous avez créé, exécuter 'docker ps' avec l'option -l :
-		  >> docker ps -l
-	2.10. Pour démarrer un conteneur arrêté, utiliser 'docker start', suivi de l’ID du conteneur ou de son nom :
-		  E.g. >> docker start 1c08a7a0d0e4
-	2.11. Pour arrêter un conteneur en cours d'exécution, utiliser 'docker stop', suivi de l'ID ou du nom du conteneur :
-		  E.g. >> docker stop my_running_container
-	2.12. Pour supprimer un conteneur, utiliser 'docker rm', suivi de l'ID ou du nom du conteneur :
-		  E.g. >> docker rm my_container
+1. Utiliser Docker consiste à lui passer une chaîne d'options et de sous-commandes suivies d'arguments. La syntaxe prend la forme suivante :<br/>```docker [option] [subcommand] [arguments]```<br/>Pour afficher toutes les sous-commandes Docker disponibles, taper :<br/>```docker```<br/>Vérifier le résultat et analyser certaines sous-commandes. Pour afficher les options disponibles pour une sous-commande spécifique, saisissez :<br/>```docker subcommand --help```<br/>E.g. ```docker build --help```
+2. Pour vérifier si vous pouvez accéder aux images de Docker Hub et les télécharger, saisissez :<br/>```docker run hello-world```<br/>L'output indiquera que Docker fonctionne correctement et qu'il n'a initialement pas pu trouver l'image hello-world localement, il a donc téléchargé l'image depuis Docker Hub, qui est le référentiel par défaut.
+3. Vous pouvez rechercher des images disponibles sur Docker Hub en utilisant la commande docker avec la sous-commande search. Par exemple, pour rechercher l'image Ubuntu, saisissez :<br/>```docker search ubuntu```<br/>Cette commande explorera Docker Hub et renverra une liste de toutes les images dont le nom correspond à la chaîne de recherche.<br/><b>Remarques : </b><i>La colonne [OK] indique une image construite et soutenue par l'organisation derrière le projet.</i>
+4. Une fois que vous ayez identifié l’image que vous souhaitez utiliser, vous pouvez la télécharger sur votre machine locale à l’aide de la sous-commande pull.<br/>E.g. exécuter la commande suivante pour télécharger l'image officielle d'Ubuntu sur votre machine locale :<br/>```docker pull ubuntu```
+5. Pour voir les images qui ont été téléchargées sur votre machine, taper :<br/>```docker images```
+6. Exécuter des conteneur Docker :<br/>Le conteneur hello-world que vous avez exécuté à l'étape précédente est un exemple de conteneur qui s'exécute et se ferme après avoir émis un message de test. Les conteneurs peuvent être bien plus utiles que cela et ils peuvent être interactifs. Exécuter un conteneur en utilisant la dernière image d'Ubuntu : <br/>```docker run -it ubuntu```<br/><b>Remarques : </b><i>La combinaison des options -i et -t vous donne un accès shell interactif au conteneur.</i>
+7. Après avoir utilisé Docker pendant un certain temps, vous aurez de nombreux conteneurs actifs (en cours d'exécution) et inactifs sur votre ordinateur. Pour afficher ceux qui sont actifs, utilisez :<br/>```docker ps```
+8. Pour afficher tous les conteneurs, actifs et inactifs, exécuter 'docker ps' avec l'option -a :<br/>```docker ps -a```
+9. Pour afficher le dernier conteneur que vous avez créé, exécuter 'docker ps' avec l'option -l :<br/>```docker ps -l```
+10. Pour démarrer un conteneur arrêté, utiliser 'docker start', suivi de l’ID du conteneur ou de son nom :<br/>E.g. ```docker start 1c08a7a0d0e4```
+11. Pour arrêter un conteneur en cours d'exécution, utiliser 'docker stop', suivi de l'ID ou du nom du conteneur : <br/>E.g. ```docker stop my_running_container```
+12. Pour supprimer un conteneur, utiliser 'docker rm', suivi de l'ID ou du nom du conteneur : <br/>E.g. ```docker rm my_container```
 
 ## Atelier 3. Créer un Dockerfile, générer l'Image Docker et exécuter un conteneur Docker
 	3.01. Image say_hello_one
