@@ -91,24 +91,16 @@ EXPOSE 8080
 #enfin, la commande pour lancer l'application
 CMD ["node", "say_hello_three.js"]
 ```
-5. Générer l'image say_hello_two : <br/>```docker build --tag say_hello_two .```
-6. Exécuter le conteneur say_hello_two en mode intéractif : <br/>```docker run -p 8080:8080 say_hello_two```<br/>Votre application est maintenant accessible via ```http://localhost:8080```
+5. Générer l'image say_hello_two : <br/>```docker build --tag say_hello_three .```
+6. Exécuter le conteneur say_hello_three en mode intéractif : <br/>```docker run -p 8080:8080 say_hello_three```<br/>Votre application est maintenant accessible via ```http://localhost:8080```
 				
 ## Atelier 4. publier une image sur le repository Docker Hub
-	4.01. Si vous n'avez pas de compte et de dépôt (repository) public sur Docker Hub, vous devez d'abord les créer :
-		  - Aller sur : https://hub.docker.com/ 
-		  - Créer un compte et garder le nom d'utilisateur qui vous sera utile par la suite (E.g. mohamedtalha)
-		  - Créer un dépot (repository) public (E.g. test_images)
-	4.02. Pour diffuser (push) votre image, vous devez vous connecter à Docker Hub via la commande :
-		  >> docker login -u docker-registry-username
-		  E.g. >> docker login -u mohamedtalha
-		  Vous serez invité à vous authentifier à l’aide de votre mot de passe Docker Hub.
-	4.04. Si votre nom d'utilisateur Docker Hub est différent du nom d'utilisateur local que vous avez utilisé pour créer l'image, vous devrez baliser (tag) votre image avec votre nom d'utilisateur Docker Hub :
-		  >> docker tag image:version docker-registry-username/repository:version
-		  E.g. >> docker tag say_coucou_3.0.0:latest mohamedtalha/test_images:lastest
-	4.04. Vous pouvez désormais diffuser votre propre image via la commande :
-		  >> docker push docker-registry-username/docker-image-name
-		  E.g. >> docker push mohamedtalha/test_images:lastest
-	4.05. Vérifier votre image dans votre référentiel public. 
-		  Après avoir envoyé une image vers un registre, elle devrait être répertoriée sur le tableau de bord (dashboard) de votre compte : https://hub.docker.com/
+1. Si vous n'avez pas de compte et de dépôt (repository) public sur Docker Hub, vous devez d'abord les créer :
+- Aller sur : https://hub.docker.com/
+- Créer un compte et garder le nom d'utilisateur qui vous sera utile par la suite (E.g. mohamedtalha)
+- Créer un dépot (repository) public (E.g. test_images)
+2. Pour diffuser (push) votre image, vous devez vous connecter à Docker Hub via la commande : <br/>```docker login -u docker-registry-username```E.g. ```docker login -u mohamedtalha```<br/>Vous serez invité à vous authentifier à l’aide de votre mot de passe Docker Hub.
+3. Si votre nom d'utilisateur Docker Hub est différent du nom d'utilisateur local que vous avez utilisé pour créer l'image, vous devrez baliser (tag) votre image avec votre nom d'utilisateur Docker Hub : <br/>```docker tag image:version docker-registry-username/repository:version```E.g. ```docker tag say_hello_three:latest mohamedtalha/test_images:lastest```
+4. Vous pouvez désormais diffuser votre propre image via la commande : <br/>```docker push docker-registry-username/docker-image-name```E.g. ```docker push mohamedtalha/test_images:lastest```
+5. Vérifier votre image dans votre référentiel public. Après avoir envoyé une image vers un registre, elle devrait être répertoriée sur le tableau de bord (dashboard) de votre compte : https://hub.docker.com/
 
