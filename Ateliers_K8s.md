@@ -14,30 +14,30 @@
 5. Installer kubectl en exécutant la commande suivante : <br/>```minikube kubectl -- get pods```<br/><b>Remarques : </b><i>Si kubectl est déjà installé, vous aurez le message "No resources found in default namespace"</i>
 	
 ## Atelier 2. Créer une API REST avec Spring Boot
-	2.01. Créer un projet Spring Boot vide
-		2.01.a. Aller sur https://start.spring.io/
-		2.01.b. Compléter le formulaire :
-			- Project : Maven
-			- Language : Java
-			- Spring Boot : 3.3.0
-			- Group : training.mtalha
-			- Artifact : rest-api-spring-boot-k8s
-			- Name : rest-api-spring-boot-k8s
-			- Description : POC REST API Spring Boot and K8s
-			- Package name : training.mtalha.rest-api-spring-boot-k8s
-			- Packaging : jar
-			- Java : 17
-		2.01.c. cliquer sur "ADD DEPENDENCIES" et choisir les dépendances suivantes :
-			- Spring Web
-			- Lombok			
-		2.01.d. Cliquer sur le bouton GENERATE, un fichier rest-api-spring-boot-k8s.zip sera téléchargé dans votre répertoire de téléchargement par défaut. Dézipper-le.
-		2.01.e. Ouvrez IntelliJ IDEA, et aller dans File > Open... et naviguer jusqu'au dossier dézippé à l'étape précédente
-		2.01.f. Appuyer sur Open, faites confiance au projet, et ouvrez le nouveau le projet dans la même fenêtre IntelliJ.
-	2.02. Créer une API REST (suite à l'étape 2.01.f.)
-		2.02.a. bouton-droit sur le package "training.mtalha.rest_api_spring_boot_k8s" et créer un sous-package "rest.controller"
-		2.02.b. bouton-droit sur le package "rest.controller" et créer la classe MyRestApi
-		2.02.c. Saisir le code suivant pour la classe MyRestApi :
-		//---------------------------------------------------------------------------------------//
+1. Créer un projet Spring Boot vide
+    1. Aller sur [Spring Initializr](https://start.spring.io/)
+    2. Compléter le formulaire :
+       - Project : Maven
+       - Language : Java
+       - Spring Boot : 3.3.0
+       - Group : training.mtalha
+       - Artifact : rest-api-spring-boot-k8s
+       - Name : rest-api-spring-boot-k8s
+       - Description : POC REST API Spring Boot and K8s
+       - Package name : training.mtalha.rest-api-spring-boot-k8s
+       - Packaging : jar
+       - Java : 17
+    3. Cliquer sur "ADD DEPENDENCIES" et choisir les dépendances suivantes :
+       - Spring Web
+       - Lombok			
+    4. Cliquer sur le bouton GENERATE, un fichier rest-api-spring-boot-k8s.zip sera téléchargé sur votre répertoire de téléchargement par défaut. Dézippez-le.
+    5. Ouvrez IntelliJ IDEA, et aller dans File > Open... et naviguer jusqu'au dossier dézippé à l'étape précédente
+    6. Appuyer sur Open, faites confiance au projet, et ouvrez le nouveau le projet dans la même fenêtre IntelliJ.
+    7. Une fois votre projet ouvert et indexé, créer une API REST :
+       - bouton-droit sur le package "training.mtalha.rest_api_spring_boot_k8s" et créer un sous-package "rest.controller"
+       - bouton-droit sur le package "rest.controller" et créer la classe MyRestApi
+       - Saisir le code suivant pour la classe MyRestApi :
+         <br/>```
 		package training.mtalha.rest_api_spring_boot_k8s.rest.controller;
 
 		import lombok.Getter;
@@ -81,10 +81,8 @@
 				private String value;
 			}
 		}		
-		//---------------------------------------------------------------------------------------//
-		2.02.d. générer le package du projet : 
-			>> mvn clean package -DskipTests=true
-			R.Q. vérifier que le package est bien généré dans le répertoire : rest-api-spring-boot-k8s\target\rest-api-spring-boot-k8s-0.0.1-SNAPSHOT.jar			
+		```
+    - Générer le package du projet : <br/>```mvn clean package -DskipTests=true```<br/><b>Remarques : </b><i>vérifier que le package est bien généré dans le répertoire : rest-api-spring-boot-k8s\target\rest-api-spring-boot-k8s-0.0.1-SNAPSHOT.jar</i>			
 	
 ## Atelier 3. Créer le Dockerfile et générer l'Image Docker
 	3.01. Sur IntelliJ, à la racine de votre projet (au même niveau que le pom.xml), créer un fichier vide appelé Dockerfile
