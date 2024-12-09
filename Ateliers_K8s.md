@@ -19,7 +19,7 @@
     2. Compléter le formulaire :
        - Project : Maven
        - Language : Java
-       - Spring Boot : 3.3.0
+       - Spring Boot : 3.4.0
        - Group : training.mtalha
        - Artifact : rest-api-spring-boot-k8s
        - Name : rest-api-spring-boot-k8s
@@ -29,15 +29,19 @@
        - Java : 17
     3. Cliquer sur "ADD DEPENDENCIES" et choisir les dépendances suivantes :
        - Spring Web
-       - Lombok			
+       - Lombok
+     <br/><br/>Voici une capture d'écran du formulaire Spring Initializr :<br/>
+       ![Spring_Initializr](https://github.com/user-attachments/assets/6011e732-c6ef-4ec9-a676-aa56e84c0e5a)
     4. Cliquer sur le bouton GENERATE, un fichier rest-api-spring-boot-k8s.zip sera téléchargé sur votre répertoire de téléchargement par défaut. Dézippez-le.
     5. Ouvrez IntelliJ IDEA, et aller dans File > Open... et naviguer jusqu'au dossier dézippé à l'étape précédente
-    6. Appuyer sur Open, faites confiance au projet, et ouvrez le nouveau le projet dans la même fenêtre IntelliJ.
-    7. Une fois votre projet ouvert et indexé, créer une API REST :
+    6. Appuyer sur Open, faites confiance au projet, et ouvrez le nouveau projet dans la même fenêtre IntelliJ.
+    7. Une fois votre projet ouvert et indexé, créer une API REST en suivant les étapes suivantes :
        - bouton-droit sur le package "training.mtalha.rest_api_spring_boot_k8s" et créer un sous-package "rest.controller"
        - bouton-droit sur le package "rest.controller" et créer la classe MyRestApi
        - Saisir le code suivant pour la classe MyRestApi :
-         <br/>```
+         <br/>
+	 ````
+	 ```
 		package training.mtalha.rest_api_spring_boot_k8s.rest.controller;
 
 		import lombok.Getter;
@@ -80,8 +84,9 @@
 				private String place;
 				private String value;
 			}
-		}		
-		```
+		}
+        ```
+        ````
     - Générer le package du projet : <br/>```mvn clean package -DskipTests=true```<br/><b>Remarques : </b><i>vérifier que le package est bien généré dans le répertoire : rest-api-spring-boot-k8s\target\rest-api-spring-boot-k8s-0.0.1-SNAPSHOT.jar</i>			
 	
 ## Atelier 3. Créer le Dockerfile et générer l'Image Docker
