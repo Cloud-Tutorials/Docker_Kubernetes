@@ -54,7 +54,7 @@ ENTRYPOINT exec java -jar app.jar --debug
 ```
 3. Ouvrez une console PowerShell (ou l'invite de commande) lancer minikube : ```minikube start```
 4. Vérifier que le cluster K8s est bien démarré : ```minikube status```
-<br/><b>Remarque : </b><i>Vous devriez obtenir le résultat suivant :
+<br/><b>Remarque : </b>Vous devriez obtenir le résultat suivant :
 - type: Control Plane
 - host: Running
 - kubelet: Running
