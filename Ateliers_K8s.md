@@ -7,7 +7,7 @@
 	- IntelliJ IDEA 2021.3.3 (Community Edition)
 
 ## Atelier 1. Installer minikube & kubectl
-1. Télécharger minikube-installer.exe du site officiel [Minikube](https://minikube.sigs.k8s.io/docs/start/?arch=%2Fwindows%2Fx86-64%2Fstable%2F.exe+download)
+1. Télécharger minikube-installer.exe du site officiel [Minikube](https://minikube.sigs.k8s.io/docs/start/?arch=%2Fwindows%2Fx86-64%2Fstable%2F.exe+download) qui s'adapte automatiquement à votre OS.
 2. Exécuter minikube-installer.exe et suivre les étapes
 3. Ouvrir une console PowerShell (ou une invite de commande) et exécuter la commande suivante : <br/>```minikube start```<br/><b>Remarques : </b><i>Si la commande minikube n'est pas reconnu, trouver le répertoire d'installation de minikube sur votre machine, et ajouter le dans votre PATH</i>
 4. Vérifiez que minikube est bien installé en exécutant la commande suivante : <br/>```minikube status```<br/>Cette commande doit vous lister les status du host, kubelet, apiserver (RUNNING) et kubeconfig (CONFIGURED)
