@@ -55,7 +55,7 @@ ENTRYPOINT exec java -jar app.jar --debug
 ```
 3. Ouvrez une console PowerShell (ou l'invite de commande) lancez minikube avec la commande suivante : ```minikube start```
 4. Vérifier que le cluster K8s est bien démarré : ```minikube status```
-<br/><b>Remarque : </b>Vous devriez obtenir le résultat suivant :
+<br/><b>Remarque : </b>Vous devriez obtenir le résultat suivant :<br/>
 ![Capture](https://github.com/user-attachments/assets/7944b417-8e1b-4166-8e71-6020771dbbf6)
 5. Accédez au noeud du cluster K8s en ssh : ```minikube ssh```
 <br/>Un terminal ssh de minikube est alors ouvert pour pouvoir exécuter des commandes linux
@@ -65,7 +65,7 @@ ENTRYPOINT exec java -jar app.jar --debug
   - Psitionnez-vous dans votre répertoire de travail du projet Java : E.g. ```cd /c/Users/Mohamed/Downloads/rest-api-spring-boot-k8s```
   - Exécutez la commande build pour générer l'image Docker : E.g. ```docker build --file=Dockerfile --tag=rest-api-spring-boot-k8s:1.0.0 .```
   - Vérifiez l'image : ```docker image ls```
-  - Vous devriez obtenir un résultat comme celui-là :
+  - Vous devriez obtenir un résultat comme celui-là :<br/>
 ![Capture](https://github.com/user-attachments/assets/a2d58574-61d5-479c-b3cc-6a6cd5be25f3)
   - Quittez le terminal ssh : ```exit```
 		
