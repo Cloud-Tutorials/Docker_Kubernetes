@@ -39,10 +39,11 @@
        - bouton-droit sur le package "training.mtalha.rest_api_spring_boot_k8s" et créer un sous-package "rest.controller"
        - bouton-droit sur le package "rest.controller" et créer la classe MyRestApi
        - Saisir le code suivant pour la classe [MyRestApi](https://github.com/Cloud-Elit/Docker_Kubernetes/blob/main/rest-api-spring-boot-k8s/src/main/java/training/mtalha/rest_api_spring_boot_k8s/rest/controller/MyRestApi.java)
-       - Générer le package du projet : <br/>```mvn clean package -DskipTests=true```<br/><b>Remarques : </b><i>vérifier que le package <b>rest-api-spring-boot-k8s-0.0.1-SNAPSHOT.jar</b> est bien généré dans le répertoire : rest-api-spring-boot-k8s\target\</i>
-       <br/><br/>En cas de problème, vérifiez votre JDK (dans File/Project Structure...) et Maven utilisé (dans File/Settings).
-       <br/><br/>Voici une capture d'écran du projet complet (y compris les fichiers des ateliers qui suivent) :<br/>
-       ![Capture](https://github.com/user-attachments/assets/88daa845-1910-4ab8-9b5b-56803409fee7)
+       - Générer le package du projet : ```mvn clean package -DskipTests=true```
+         <br/><b>Remarque : </b>Vérifier que le package <b>rest-api-spring-boot-k8s-0.0.1-SNAPSHOT.jar</b> est bien généré dans le répertoire : rest-api-spring-boot-k8s\target
+         <br/><br/>En cas de problème, vérifiez votre JDK (dans File/Project Structure...) et Maven utilisé (dans File/Settings).
+         <br/><br/>Voici une capture d'écran du projet complet (y compris les fichiers des ateliers qui suivent) :<br/>
+	 ![Capture](https://github.com/user-attachments/assets/88daa845-1910-4ab8-9b5b-56803409fee7)
      	
 ## Atelier 3. Créer le Dockerfile et générer l'Image Docker
 	3.01. Sur IntelliJ, à la racine de votre projet (au même niveau que le pom.xml), créer un fichier vide appelé Dockerfile
