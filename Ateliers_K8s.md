@@ -9,7 +9,7 @@
 ## Atelier 1. Installer minikube & kubectl
 1. Télécharger minikube-installer.exe du site officiel [Minikube](https://minikube.sigs.k8s.io/docs/start/?arch=%2Fwindows%2Fx86-64%2Fstable%2F.exe+download) qui s'adapte automatiquement à votre OS.
 2. Exécuter minikube-installer.exe et suivre les étapes
-3. Ouvrir une console PowerShell (ou une invite de commande) et exécuter la commande suivante : <br/>```minikube start```<br/><b>Remarques : </b><i>Si la commande minikube n'est pas reconnu, trouver le répertoire d'installation de minikube sur votre machine, et ajouter le dans votre PATH</i>
+3. Ouvrir une console PowerShell (ou une invite de commande) et exécuter la commande suivante : <br/>```minikube start```<br/><b>Remarque : </b><i>Si la commande minikube n'est pas reconnu, trouver le répertoire d'installation de minikube sur votre machine, et ajouter le dans votre PATH</i>
 4. Vérifiez que minikube est bien installé en exécutant la commande suivante : <br/>```minikube status```<br/>Cette commande doit vous lister les status du host, kubelet, apiserver (RUNNING) et kubeconfig (CONFIGURED)
 5. Installer kubectl en exécutant la commande suivante : <br/>```minikube kubectl -- get pods```<br/><b>Remarques : </b><i>Si kubectl est déjà installé, vous aurez le message "No resources found in default namespace"</i>
 	
@@ -45,42 +45,33 @@
 	 ![Capture](https://github.com/user-attachments/assets/88daa845-1910-4ab8-9b5b-56803409fee7)
      	
 ## Atelier 3. Créer le Dockerfile et générer l'Image Docker
-	3.01. Sur IntelliJ, à la racine de votre projet (au même niveau que le pom.xml), créer un fichier vide appelé Dockerfile
-	3.02. Compléter le Dockerfile avec les commandes suivantes :
-	#-----------------------------------------#
-	FROM openjdk:17-alpine
-	COPY ./target/rest-api-spring-boot-k8s-0.0.1-SNAPSHOT.jar app.jar
-	ENTRYPOINT exec java -jar app.jar --debug
-	#-----------------------------------------#
-	3.03. ouvrez une console PowerShell (ou l'invite de commande) lancer minikube :
-		>> minikube start
-	3.04. vérifier que le cluster K8s est bien démarré :
-		>> minikube status
-		R.Q. vous devriez obtenir le résultat suivant :
-		type: Control Plane
-		host: Running
-		kubelet: Running
-		apiserver: Running
-		kubeconfig: Configured
-	3.05. accéder au noeud du cluster K8s en ssh :
-		>> minikube ssh
-		un terminal ssh de minikube est alors ouvert pour pouvoir exécuter des commandes linux
-	3.06. vérifier que Docker est bien installé :
-		>> docker version
-	3.07. lister les images existantes :
-		>> docker image ls
-	3.08. générer l'image grâce à l'utiliser "build" de Docker
-		3.08.a. positionnez-vous dans votre répertoire de travail du projet Java :
-		E.g. cd /c/Users/Mohamed/Downloads/rest-api-spring-boot-k8s
-		3.08.b. exécuter la commande build pour générer l'image Docker :
-		>>  docker build --file=Dockerfile --tag=rest-api-spring-boot-k8s:1.0.0 .
-		3.08.c. Vérifiez l'image :
-		>> docker image ls
-		Vous devriez avoir un résultat comme celui-là :
-		REPOSITORY                  TAG        IMAGE ID       CREATED          SIZE
-		rest-api-spring-boot-k8s    1.0.0      3975d3e8c3a5   57 seconds ago   125MB
-	3.09. Quitter le terminal ssh :
-		>> exit
+1. Sur IntelliJ, à la racine de votre projet (au même niveau que le pom.xml), créer un fichier vide appelé Dockerfile
+2. Compléter le Dockerfile avec les commandes suivantes :<br/>
+```
+FROM openjdk:17-alpine
+COPY ./target/rest-api-spring-boot-k8s-0.0.1-SNAPSHOT.jar app.jar
+ENTRYPOINT exec java -jar app.jar --debug
+```
+3. Ouvrez une console PowerShell (ou l'invite de commande) lancer minikube : ```minikube start```
+4. Vérifier que le cluster K8s est bien démarré : ```minikube status```
+<br/><b>Remarque : </b><i>Vous devriez obtenir le résultat suivant :
+- type: Control Plane
+- host: Running
+- kubelet: Running
+- apiserver: Running
+- kubeconfig: Configured
+5. Accéder au noeud du cluster K8s en ssh : ```minikube ssh```
+<br/>Un terminal ssh de minikube est alors ouvert pour pouvoir exécuter des commandes linux
+6. Vérifier que Docker est bien installé : ```docker version```
+7. Lister les images existantes : ```docker image ls```
+8. Générer l'image grâce à l'utiliser <i>build<\i> de Docker :
+  - Psitionnez-vous dans votre répertoire de travail du projet Java : E.g. ```cd /c/Users/Mohamed/Downloads/rest-api-spring-boot-k8s```
+  - Exécuter la commande build pour générer l'image Docker : E.g. ```docker build --file=Dockerfile --tag=rest-api-spring-boot-k8s:1.0.0 .```
+  - Vérifiez l'image : ```docker image ls```
+  - Vous devriez obtenir un résultat comme celui-là :
+    <br/>REPOSITORY                  TAG        IMAGE ID       CREATED          SIZE
+    <br/>rest-api-spring-boot-k8s    1.0.0      3975d3e8c3a5   57 seconds ago   125MB
+  - Quitter le terminal ssh : ```exit```
 		
 ## Atelier 4. Créer les objets K8s requis pour le déploiement et le lancement de l'application
 	4.01. Sur IntelliJ, à la racine de votre projet (au même niveau que le pom.xml), créer un fichier vide appelé deployment.yaml
