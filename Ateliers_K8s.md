@@ -64,7 +64,7 @@ ENTRYPOINT exec java -jar app.jar --debug
 <br/>Un terminal ssh de minikube est alors ouvert pour pouvoir exécuter des commandes linux
 6. Vérifier que Docker est bien installé : ```docker version```
 7. Lister les images existantes : ```docker image ls```
-8. Générer l'image grâce à l'utiliser <i>build<\i> de Docker :
+8. Générer l'image grâce à l'utiliser <i>build</i> de Docker :
   - Psitionnez-vous dans votre répertoire de travail du projet Java : E.g. ```cd /c/Users/Mohamed/Downloads/rest-api-spring-boot-k8s```
   - Exécuter la commande build pour générer l'image Docker : E.g. ```docker build --file=Dockerfile --tag=rest-api-spring-boot-k8s:1.0.0 .```
   - Vérifiez l'image : ```docker image ls```
