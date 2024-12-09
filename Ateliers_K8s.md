@@ -39,49 +39,47 @@
        - bouton-droit sur le package "training.mtalha.rest_api_spring_boot_k8s" et créer un sous-package "rest.controller"
        - bouton-droit sur le package "rest.controller" et créer la classe MyRestApi
        - Saisir le code suivant pour la classe MyRestApi :
-       <br/>
-       ```
-package training.mtalha.rest_api_spring_boot_k8s.rest.controller;
-
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-/**
- * @author Mohamed, TALHA
- * @created 07-12-2024
- *
- * This is Rest API just returns an object which has id, name, place, and value.
- *
- */
-@RestController
-@RequestMapping("/home")
-public class MyRestApi {
-
-    @GetMapping("/info")
-    public ResponseEntity<ResponseData> getInfo() {
-        ResponseData responseData = new ResponseData();
-        responseData.setId(1);
-        responseData.setName("ENSA");
-        responseData.setPlace("Marrakech");
-        return new ResponseEntity<ResponseData>(responseData, HttpStatus.OK);
-    }
-
-    @Getter
-    @Setter
-    public class ResponseData {
-        private String name;
-        private Integer id;
-        private String place;
-    }
-}
-       ```
-       <br/>
-       - Générer le package du projet : <br/>```mvn clean package -DskipTests=true```<br/><b>Remarques : </b><i>vérifier que le package est bien généré dans le répertoire : rest-api-spring-boot-k8s\target\rest-api-spring-boot-k8s-0.0.1-SNAPSHOT.jar</i>			
+         ```java
+	        package training.mtalha.rest_api_spring_boot_k8s.rest.controller;
+	
+		import lombok.Getter;
+		import lombok.Setter;
+		import org.springframework.http.HttpStatus;
+		import org.springframework.http.ResponseEntity;
+		import org.springframework.web.bind.annotation.GetMapping;
+		import org.springframework.web.bind.annotation.RequestMapping;
+		import org.springframework.web.bind.annotation.RestController;
+		
+		/**
+		 * @author Mohamed, TALHA
+		 * @created 07-12-2024
+		 *
+		 * This is Rest API just returns an object which has id, name, place, and value.
+		 *
+		 */
+		@RestController
+		@RequestMapping("/home")
+		public class MyRestApi {
+		
+		    @GetMapping("/info")
+		    public ResponseEntity<ResponseData> getInfo() {
+		        ResponseData responseData = new ResponseData();
+		        responseData.setId(1);
+		        responseData.setName("ENSA");
+		        responseData.setPlace("Marrakech");
+		        return new ResponseEntity<ResponseData>(responseData, HttpStatus.OK);
+		    }
+		
+		    @Getter
+		    @Setter
+		    public class ResponseData {
+		        private String name;
+		        private Integer id;
+		        private String place;
+		    }
+		}
+         ```
+       - Générer le package du projet : <br/>```mvn clean package -DskipTests=true```<br/><b>Remarques : </b><i>vérifier que le package <b>rest-api-spring-boot-k8s-0.0.1-SNAPSHOT.jar</b> est bien généré dans le répertoire : rest-api-spring-boot-k8s\target\</i>			
 	
 ## Atelier 3. Créer le Dockerfile et générer l'Image Docker
 	3.01. Sur IntelliJ, à la racine de votre projet (au même niveau que le pom.xml), créer un fichier vide appelé Dockerfile
