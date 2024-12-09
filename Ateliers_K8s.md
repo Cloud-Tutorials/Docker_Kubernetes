@@ -63,7 +63,7 @@ ENTRYPOINT exec java -jar app.jar --debug
 7. Listez les images existantes : ```docker image ls```
 8. Générez l'image grâce à l'utiliser <b><i>build</i></b> de Docker :
   - Psitionnez-vous dans votre répertoire de travail du projet Java : E.g. ```cd /c/Users/Mohamed/Downloads/rest-api-spring-boot-k8s```
-  - Exécutez la commande build pour générer l'image Docker : E.g. ```docker build --file=Dockerfile --tag=rest-api-spring-boot-k8s:1.0.0 .```
+  - Exécutez la commande build pour générer l'image Docker : <br/>E.g. ```docker build --file=Dockerfile --tag=rest-api-spring-boot-k8s:1.0.0 .```
   - Vérifiez l'image : ```docker image ls```
   - Vous devriez obtenir un résultat comme celui-là :<br/>
 ![Capture](https://github.com/user-attachments/assets/a2d58574-61d5-479c-b3cc-6a6cd5be25f3)
