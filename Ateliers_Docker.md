@@ -1,4 +1,4 @@
-# Prise en main de Docker
+# Ateliers de prise en main de Docker
 ## Atelier 1. télécharger et installer docker sur une VM Ubuntu 22.04.1
 1. Aller sur le site : [docker-desktop](https://www.docker.com/products/docker-desktop)
 2. Télécharger la version compatible avec votre machine. <br/><b>Remarques : </b><i>Docker Desktop exige une version récente d'OS, sinon il faut passer par un toolbox-docker-desktop.</i>
