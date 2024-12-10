@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<meta charset="utf-8" />
+</head>
+
+<body style="margin: 0;">
+
+<div id="p9" style="overflow: hidden; position: relative; background-color: white; width: 1100px; height: 825px;">
+<style class="shared-css" type="text/css" >
+.t {
+	transform-origin: bottom left;
+	z-index: 2;
+	position: absolute;
+	white-space: pre;
+	overflow: visible;
+	line-height: 1.5;
+}
+.text-container {
+	white-space: pre;
+}
+@supports (-webkit-touch-callout: none) {
+	.text-container {
+		white-space: normal;
+	}
+}
+</style>
+<style type="text/css" >
+
+#t1_9{left:510px;bottom:787px;letter-spacing:0.15px;word-spacing:0.01px;}
+#t2_9{left:928px;bottom:785px;}
+#t3_9{left:66px;bottom:649px;letter-spacing:-1.48px;word-spacing:0.04px;}
+#t4_9{left:66px;bottom:584px;}
+#t5_9{left:88px;bottom:578px;letter-spacing:-0.32px;}
+#t6_9{left:170px;bottom:578px;letter-spacing:-0.21px;word-spacing:0.03px;}
+#t7_9{left:88px;bottom:538px;letter-spacing:-0.2px;word-spacing:0.03px;}
+#t8_9{left:66px;bottom:497px;}
+#t9_9{left:88px;bottom:491px;letter-spacing:-0.3px;}
+#ta_9{left:192px;bottom:491px;letter-spacing:-0.2px;word-spacing:0.03px;}
+#tb_9{left:88px;bottom:451px;letter-spacing:-0.27px;word-spacing:0.1px;}
+#tc_9{left:66px;bottom:410px;}
+#td_9{left:88px;bottom:404px;letter-spacing:-0.32px;}
+#te_9{left:170px;bottom:404px;letter-spacing:-0.19px;word-spacing:0.03px;}
+#tf_9{left:88px;bottom:364px;letter-spacing:-0.21px;word-spacing:0.03px;}
+#tg_9{left:88px;bottom:323px;letter-spacing:-0.21px;word-spacing:0.03px;}
+#th_9{left:66px;bottom:282px;}
+#ti_9{left:88px;bottom:276px;letter-spacing:-0.41px;}
+#tj_9{left:312px;bottom:276px;letter-spacing:-0.19px;word-spacing:0.03px;}
+#tk_9{left:88px;bottom:236px;letter-spacing:-0.24px;word-spacing:0.07px;}
+#tl_9{left:88px;bottom:196px;letter-spacing:-0.26px;word-spacing:0.07px;}
+#tm_9{left:66px;bottom:155px;}
+#tn_9{left:88px;bottom:149px;letter-spacing:-0.35px;}
+#to_9{left:174px;bottom:149px;letter-spacing:-0.19px;word-spacing:0.03px;}
+#tp_9{left:88px;bottom:108px;letter-spacing:-0.59px;}
+
+.s0_9{font-size:18px;font-family:LiberationSans_rv;color:#FFF;}
+.s1_9{font-size:21px;font-family:LiberationSans-Bold_s9;color:#FFF;}
+.s2_9{font-size:61px;font-family:LiberationSans_rv;color:#D2533C;}
+.s3_9{font-size:29px;font-family:LiberationSans_rv;color:#93A299;}
+.s4_9{font-size:34px;font-family:LiberationSans-Bold_s9;color:#13B1B9;}
+.s5_9{font-size:34px;font-family:LiberationSans_rv;color:#292934;}
+</style>
+<style id="fonts9" type="text/css" >
+
+@font-face {
+	font-family: LiberationSans-Bold_s9;
+	src: url("fonts/LiberationSans-Bold_s9.woff") format("woff");
+}
+
+@font-face {
+	font-family: LiberationSans_rv;
+	src: url("fonts/LiberationSans_rv.woff") format("woff");
+}
+
+</style>
+<div id="pg9Overlay" style="width:100%; height:100%; position:absolute; z-index:1; background-color:rgba(0,0,0,0); -webkit-user-select: none;"></div>
+<div id="pg9" style="-webkit-user-select: none;"><object width="1100" height="825" data="9/9.svg" type="image/svg+xml" id="pdf9" style="width:1100px; height:825px; z-index: 0;"></object></div>
+<div class="text-container"><span id="t1_9" class="t s0_9">Docker &amp; Kubernetes, fondamentaux </span><span id="t2_9" class="t s1_9">9 </span>
+<span id="t3_9" class="t s2_9">Les commandes Dockerfile (2/3) </span>
+<span id="t4_9" class="t s3_9">• </span>
+<span id="t5_9" class="t s4_9">RUN </span><span id="t6_9" class="t s5_9">: elle exécute des commandes Linux ou Windows lors de </span>
+<span id="t7_9" class="t s5_9">la création de l'image. </span>
+<span id="t8_9" class="t s3_9">• </span>
+<span id="t9_9" class="t s4_9">COPY </span><span id="ta_9" class="t s5_9">: elle permet de copier des fichiers depuis la machine </span>
+<span id="tb_9" class="t s5_9">locale vers le conteneur Docker. </span>
+<span id="tc_9" class="t s3_9">• </span>
+<span id="td_9" class="t s4_9">ADD </span><span id="te_9" class="t s5_9">: elle permet de copier des fichiers depuis la machine </span>
+<span id="tf_9" class="t s5_9">locale vers le conteneur Docker (tout comme COPY) mais </span>
+<span id="tg_9" class="t s5_9">prend en charge des liens ou des archives. </span>
+<span id="th_9" class="t s3_9">• </span>
+<span id="ti_9" class="t s4_9">ENTRYPOINT </span><span id="tj_9" class="t s5_9">: comme son nom l'indique, c'est le point </span>
+<span id="tk_9" class="t s5_9">d'entrée du conteneur, en d'autres termes, c'est la commande </span>
+<span id="tl_9" class="t s5_9">qui sera toujours exécutée au démarrage du conteneur. </span>
+<span id="tm_9" class="t s3_9">• </span>
+<span id="tn_9" class="t s4_9">CMD </span><span id="to_9" class="t s5_9">: elle spécifie les arguments qui seront envoyés à </span>
+<span id="tp_9" class="t s5_9">l’ENTRYPOINT. </span></div>
+
+</div>
+</body>
+</html>

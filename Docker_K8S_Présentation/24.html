@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<meta charset="utf-8" />
+</head>
+
+<body style="margin: 0;">
+
+<div id="p24" style="overflow: hidden; position: relative; background-color: white; width: 1100px; height: 825px;">
+<style class="shared-css" type="text/css" >
+.t {
+	transform-origin: bottom left;
+	z-index: 2;
+	position: absolute;
+	white-space: pre;
+	overflow: visible;
+	line-height: 1.5;
+}
+.text-container {
+	white-space: pre;
+}
+@supports (-webkit-touch-callout: none) {
+	.text-container {
+		white-space: normal;
+	}
+}
+</style>
+<style type="text/css" >
+
+#t1_24{left:510px;bottom:787px;letter-spacing:0.15px;word-spacing:0.01px;}
+#t2_24{left:928px;bottom:785px;letter-spacing:0.22px;}
+#t3_24{left:66px;bottom:649px;letter-spacing:-1.52px;word-spacing:0.09px;}
+#t4_24{left:66px;bottom:584px;}
+#t5_24{left:88px;bottom:578px;letter-spacing:-0.24px;word-spacing:0.07px;}
+#t6_24{left:88px;bottom:538px;letter-spacing:-0.22px;word-spacing:0.04px;}
+#t7_24{left:88px;bottom:498px;letter-spacing:-0.3px;word-spacing:0.12px;}
+#t8_24{left:88px;bottom:457px;letter-spacing:-0.22px;word-spacing:0.05px;}
+#t9_24{left:701px;bottom:457px;}
+#ta_24{left:744px;bottom:457px;letter-spacing:-0.23px;word-spacing:0.03px;}
+#tb_24{left:934px;bottom:457px;}
+#tc_24{left:66px;bottom:374px;}
+#td_24{left:88px;bottom:368px;letter-spacing:-0.18px;}
+#te_24{left:88px;bottom:332px;letter-spacing:-0.2px;word-spacing:0.02px;}
+#tf_24{left:66px;bottom:251px;}
+#tg_24{left:88px;bottom:246px;letter-spacing:-0.18px;}
+#th_24{left:88px;bottom:209px;letter-spacing:-0.17px;word-spacing:-0.01px;}
+#ti_24{left:238px;bottom:209px;letter-spacing:-0.19px;}
+#tj_24{left:359px;bottom:209px;letter-spacing:-0.17px;word-spacing:0.02px;}
+#tk_24{left:88px;bottom:173px;letter-spacing:-0.19px;word-spacing:0.01px;}
+#tl_24{left:388px;bottom:173px;letter-spacing:-0.17px;word-spacing:-0.01px;}
+#tm_24{left:571px;bottom:173px;letter-spacing:-0.17px;}
+#tn_24{left:88px;bottom:136px;letter-spacing:-0.18px;}
+
+.s0_24{font-size:18px;font-family:LiberationSans_rv;color:#FFF;}
+.s1_24{font-size:21px;font-family:LiberationSans-Bold_s9;color:#FFF;}
+.s2_24{font-size:61px;font-family:LiberationSans_rv;color:#D2533C;}
+.s3_24{font-size:29px;font-family:LiberationSans_rv;color:#93A299;}
+.s4_24{font-size:34px;font-family:LiberationSans_rv;color:#292934;}
+.s5_24{font-size:34px;font-family:OpenSymbol_se;color:#292934;}
+.s6_24{font-size:34px;font-family:LiberationSans-Bold_s9;color:#13B1B9;}
+.s7_24{font-size:26px;font-family:LiberationSans_rv;color:#93A299;}
+.s8_24{font-size:31px;font-family:LiberationSans_rv;color:#292934;}
+.s9_24{font-size:31px;font-family:LiberationSans-Bold_s9;color:#13B1B9;}
+.sa_24{font-size:31px;font-family:LiberationSans-Bold_s9;color:#292934;}
+</style>
+<style id="fonts24" type="text/css" >
+
+@font-face {
+	font-family: LiberationSans-Bold_s9;
+	src: url("fonts/LiberationSans-Bold_s9.woff") format("woff");
+}
+
+@font-face {
+	font-family: LiberationSans_rv;
+	src: url("fonts/LiberationSans_rv.woff") format("woff");
+}
+
+@font-face {
+	font-family: OpenSymbol_se;
+	src: url("fonts/OpenSymbol_se.woff") format("woff");
+}
+
+</style>
+<div id="pg24Overlay" style="width:100%; height:100%; position:absolute; z-index:1; background-color:rgba(0,0,0,0); -webkit-user-select: none;"></div>
+<div id="pg24" style="-webkit-user-select: none;"><object width="1100" height="825" data="24/24.svg" type="image/svg+xml" id="pdf24" style="width:1100px; height:825px; z-index: 0;"></object></div>
+<div class="text-container"><span id="t1_24" class="t s0_24">Docker &amp; Kubernetes, fondamentaux </span><span id="t2_24" class="t s1_24">24 </span>
+<span id="t3_24" class="t s2_24">Objets K8s : SERVICES (3/4) </span>
+<span id="t4_24" class="t s3_24">• </span>
+<span id="t5_24" class="t s4_24">L’accès à un conteneur se fait via l’adresse IP de son pod. si ce </span>
+<span id="t6_24" class="t s4_24">dernier redémarre, une nouveau pod sera créée et aura une </span>
+<span id="t7_24" class="t s4_24">nouvelle adresse IP. Comment peut-on accéder au conteneur </span>
+<span id="t8_24" class="t s4_24">sans se soucier de l’adresse IP du pod ? </span><span id="t9_24" class="t s5_24"> </span><span id="ta_24" class="t s6_24">Service K8s</span><span id="tb_24" class="t s4_24">. </span>
+<span id="tc_24" class="t s7_24">• </span>
+<span id="td_24" class="t s8_24">Un Service K8s permet aux pods de recevoir du trafic même après le </span>
+<span id="te_24" class="t s8_24">redémarrage (changement d’adresse IP). </span>
+<span id="tf_24" class="t s7_24">• </span>
+<span id="tg_24" class="t s8_24">Concrètement, pour cibler des pods, un service va utiliser ce qu’on </span>
+<span id="th_24" class="t s8_24">appelle un </span><span id="ti_24" class="t s9_24">Selector</span><span id="tj_24" class="t s8_24">, qui va chercher dans le cluster des objets </span>
+<span id="tk_24" class="t s8_24">possédant des paires </span><span id="tl_24" class="t sa_24">clé / valeurs </span><span id="tm_24" class="t s8_24">qui correspondent à celles qu’il </span>
+<span id="tn_24" class="t s8_24">attend. </span></div>
+
+</div>
+</body>
+</html>
