@@ -126,7 +126,7 @@ Analysez les logs et vérifiez qu'il n'y a pas d'erreur dans l'application. En c
 <br/><b>Remarque : </b>on peut aussi exposer le service comme suit : <br/>```minikube kubectl expose deployment rest-api-spring-boot-k8s --type=NodePort```
 <br/>Vous pouvez vérifier que le service est bien créé : ```minikube kubectl -- get services```
 8. A ce stade, l'application est déployée, le service est exposé, vous pouvez récupérer l'URL du service grâce à la commande suivante : ```minikube service rest-api-spring-boot-k8s-service --url```
-<br/>Cette commande vous renvoit l'URL du service :
+<br/>Cette commande vous renvoit l'URL du service :<br/>
 ![Capture6](https://github.com/user-attachments/assets/e85496d4-52ad-4e57-a987-2ff9fa35f242)
 10. Dans un navigateur web, accédez à l'endpoint de votre API : E.g. ```http://192.168.59.100:31344/home/info```
 ![Capture4](https://github.com/user-attachments/assets/177109a0-90f4-4158-9f1d-5b14ef32ba2a)
