@@ -123,7 +123,7 @@ spec:
 6. Affichez les logs du pod : E.g. ```minikube kubectl -- logs rest-api-spring-boot-k8s-7899bf44b6-c6fj4```<br/>
 Analysez les logs et vérifiez qu'il n'y a pas d'erreur dans l'application. En cas d'erreur, il faudra revoir le code source, regénérer le jar, re-build le Dockerfile pour avoir une nouvelle image, etc. 		
 7. Exposez votre service via la commande suivante : ```minikube kubectl -- apply -f service.yaml```
-<br/><b>Remarque : </b>on peut aussi exposer le service comme suit <br/>: ```minikube kubectl expose deployment rest-api-spring-boot-k8s --type=NodePort```
+<br/><b>Remarque : </b>on peut aussi exposer le service comme suit : ```minikube kubectl expose deployment rest-api-spring-boot-k8s --type=NodePort```
 <br/>Vous pouvez vérifier que le service est bien créé : ```minikube kubectl -- get services```
 8. A ce stade, l'application est déployée, le service est exposé, vous pouvez récupérer l'URL du service grâce à la commande suivante : ```minikube service rest-api-spring-boot-k8s-service --url```
 <br/>Cette commande vous renvoit l'URL du service : E.g. ```http://192.168.59.100:31728```
