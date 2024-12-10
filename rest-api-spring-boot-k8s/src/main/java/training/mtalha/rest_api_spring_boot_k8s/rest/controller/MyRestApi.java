@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Mohamed, TALHA
  * @created 07-12-2024
  *
- * This is Rest API just returns an object which has id, name, place, and value.
+ * This Rest API just returns an object which has id, name and place.
  *
  */
 @RestController
