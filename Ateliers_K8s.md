@@ -69,78 +69,63 @@ ENTRYPOINT exec java -jar app.jar --debug
 ![Capture](https://github.com/user-attachments/assets/a2d58574-61d5-479c-b3cc-6a6cd5be25f3)
   - Quittez le terminal ssh : ```exit```
 		
-## Atelier 4. Créer les objets K8s requis pour le déploiement et le lancement de l'application
-	4.01. Sur IntelliJ, à la racine de votre projet (au même niveau que le pom.xml), créer un fichier vide appelé deployment.yaml
-	4.02. Compléter le deployment.yaml comme suit :
-	----------------------------------------------------------------------------------	
-	apiVersion: apps/v1
-	kind: Deployment
-	metadata:
-	  name: rest-api-spring-boot-k8s
-	spec:
-	  selector:
-		  matchLabels:
-			app: rest-api-spring-boot-k8s
+## Atelier 4. Créer les objets K8s (Deployment et Service) nécessaires à la création et l'exposition du pod
+1. Sur IntelliJ, à la racine de votre projet (au même niveau que le pom.xml), créez un fichier vide appelé deployment.yaml
+2. Complétez le deployment.yaml comme suit :<br/>
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rest-api-spring-boot-k8s
+spec:
+  selector:
+	  matchLabels:
+		app: rest-api-spring-boot-k8s
 
-	  replicas: 1
-	  template:
-		metadata:
-		  labels:
-			app: rest-api-spring-boot-k8s
-		spec:
-		  containers:
-			- name: rest-api-spring-boot-k8s
-			  image: rest-api-spring-boot-k8s:1.0.0
-			  ports:
-				- containerPort: 8080
-			  env:
-				- name: env.namespace
-				  value: default
-		  volumes:
-			- name: application-config
-			  configMap:
-				name: rest-api-spring-boot-k8s	
-	----------------------------------------------------------------------------------
-	4.03. Sur IntelliJ, à la racine de votre projet (au même niveau que le pom.xml), créer un fichier vide appelé service.yaml
-	4.04. Compléter le service.yaml comme suit :
-	----------------------------------------------------------------------------------
+  replicas: 1
+  template:
+	metadata:
+	  labels:
+		app: rest-api-spring-boot-k8s
+	spec:
+	  containers:
+		- name: rest-api-spring-boot-k8s
+		  image: rest-api-spring-boot-k8s:1.0.0
+		  ports:
+			- containerPort: 8080
+		  env:
+			- name: env.namespace
+			  value: default
+	  volumes:
+		- name: application-config
+		  configMap:
+			name: rest-api-spring-boot-k8s
+```
+3. Sur IntelliJ, à la racine de votre projet (au même niveau que le pom.xml), créez un fichier vide appelé service.yaml
+4. Complétez le service.yaml comme suit :<br/>
+```
 	apiVersion: extensions/v1beta1
 	kind: Service
 	spec:
 	  type: NodePort
-	----------------------------------------------------------------------------------
+```
 
 ## Atelier 5. Déployer et lancer l'API REST sur minikube
-	5.01. Sur la console PowerShell (ou l'invite de commande) positionnez-vous dans votre répertoire de travail du projet Java :
-	E.g. cd C:\Users\Mohamed\Downloads\rest-api-spring-boot-k8s
-	5.02. créer et explorer un pod sur K8s
-		5.02.a. un pod doit être créée via un Deployement le plus souvent (ou au autre workload selon le besoin)
-		>> minikube kubectl -- apply -f deployment.yaml
-		R.Q. vous devriez avoir un message confirmant la création du déploiment
-		deployment.apps/rest-api-spring-boot-k8s created
-		5.02.b Vérifier que le déployment est bien créé :		
-		>> minikube kubectl -- get deployments
-		Cette commande doit vous listé des informations sur le Deployment :
-		NAME                       READY   UP-TO-DATE   AVAILABLE   AGE
-		rest-api-spring-boot-k8s   0/1     1            0           4m13s
-		5.02.c. Vérifier qu'un pod à bien été lancé par le déploiement :
-		>> minikube kubectl -- get pods
-		Cette commande doit vous listé au moins un pod :
-		NAME                                        READY   STATUS    RESTARTS     AGE
-		rest-api-spring-boot-k8s-7899bf44b6-c6fj4   1/1     Running   1 (3s ago)   7s
-		5.02.d. Afficher les informations du pod :
-		>> minikube kubectl -- describe pod rest-api-spring-boot-k8s-7899bf44b6-c6fj4
-		5.02.e. Afficher les log du pod :
-		>> minikube kubectl -- logs rest-api-spring-boot-k8s-7899bf44b6-c6fj4
-		R.Q. analyser les logs et vérifier qu'il n'y a pas d'erreur dans l'application. En cas d'erreur, il faudra corriger l'application, regénérer le jar, re-build le Dockerfile pour avoir une nouvelle image, etc. 		
-	5.03. exposer votre service :
-	>> minikube kubectl -- apply -f service.yaml
-	R.Q. on peut aussi exposer le service comme suit : minikube kubectl expose deployment rest-api-spring-boot-k8s --type=NodePort
-	R.Q. vous devriez avoir un message confirmant la création du service
-	Vous pouvez vérifier que le service est bien créé :
-	>> minikube kubectl -- get services
-	5.04. A ce stade, l'application est déployée, le service est exposé, vous pouvez récupérer l'URL du service grâce à la commande suivante :
-	>> minikube service rest-api-spring-boot-k8s-service --url
-	R.Q. Cette commande vous renvoit l'URL du service :
-	E.g. http://192.168.59.100:31728
-	5.05. Dans un navigateur web, appeler l'endpoint de votre API : http://192.168.59.100:31728/home/info
+1. Sur la console PowerShell (ou l'invite de commande) positionnez-vous dans votre répertoire de travail du projet Java : <br\>E.g. ```cd C:\Users\Mohamed\Downloads\rest-api-spring-boot-k8s```
+2. Créez et explorez un pod sur K8s
+2.1. Selon le besoin, un pod est géré par un workload spécifique (Deployment, ReplicaSet, Cron, etc.). Pour cet atelier, nous avons besoin d'un Deployment pour contrôler le pod. Créez le Deployment grâce à la commane <i>apply</i> : ```minikube kubectl -- apply -f deployment.yaml```<br/><b>Remarque : </b>vous devriez avoir un message confirmant la création du déploiment : "deployment.apps/rest-api-spring-boot-k8s created"
+2.2. Vérifiez que le déployment est bien créé :```minikube kubectl -- get deployments```<br/>Cette commande doit vous lister des informations sur le Deployment comme suit :<br/>
+![Capture1](https://github.com/user-attachments/assets/4ae6cad2-dea5-4013-adc8-a995094dc77a)
+2.3. Vérifiez qu'un pod a bien été lancé par le Deployment et qu'il est en status RUNNING : ```minikube kubectl -- get pods```<br/>Cette commande doit vous lister au moins un pod (si replicas = 1) :<br/>
+![Capture2](https://github.com/user-attachments/assets/fb14fb68-c068-423e-a20a-25abb2c7b09b)
+2.4. Affichez les informations du pod : E.g. ```minikube kubectl -- describe pod rest-api-spring-boot-k8s-7899bf44b6-tktn8```<br/>
+![Capture3](https://github.com/user-attachments/assets/b6ed8e96-b7f0-4a73-a62b-5dd4a6c48e87)
+<br/>Comme vous pouvez le remarquer, le pod est contrôlé par un ReplicaSet, que vous pouvez gérer (affichier, supprimer pour créer un autre, etc.) : ```minikube kubectl -- get replicasets```
+2.5. Affichez les logs du pod : E.g. ```minikube kubectl -- logs rest-api-spring-boot-k8s-7899bf44b6-c6fj4```<br/>
+<br/><b>Remarque : </b>analysez les logs et vérifiez qu'il n'y a pas d'erreur dans l'application. En cas d'erreur, il faudra revoir le code source, regénérer le jar, re-build le Dockerfile pour avoir une nouvelle image, etc. 		
+2.6. Exposez votre service : ```minikube kubectl -- apply -f service.yaml```
+<br/><b>Remarque : </b>on peut aussi exposer le service comme suit : ```minikube kubectl expose deployment rest-api-spring-boot-k8s --type=NodePort```
+Vous pouvez vérifier que le service est bien créé : ```minikube kubectl -- get services```
+2.7. A ce stade, l'application est déployée, le service est exposé, vous pouvez récupérer l'URL du service grâce à la commande suivante : ```minikube service rest-api-spring-boot-k8s-service --url```
+<br/>Cette commande vous renvoit l'URL du service : E.g. ```http://192.168.59.100:31728```
+2.8 Dans un navigateur web, accédez à l'endpoint de votre API : E.g. ```http://192.168.59.100:31728/home/info```
