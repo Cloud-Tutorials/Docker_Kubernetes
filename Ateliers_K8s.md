@@ -112,20 +112,19 @@ spec:
 
 ## Atelier 5. Déployer et lancer l'API REST sur minikube
 1. Sur la console PowerShell (ou l'invite de commande) positionnez-vous dans votre répertoire de travail du projet Java : <br\>E.g. ```cd C:\Users\Mohamed\Downloads\rest-api-spring-boot-k8s```
-2. Créez et explorez un pod sur K8s
-2.1. Selon le besoin, un pod est géré par un workload spécifique (Deployment, ReplicaSet, Cron, etc.). Pour cet atelier, nous avons besoin d'un Deployment pour contrôler le pod. Créez le Deployment grâce à la commane <i>apply</i> : ```minikube kubectl -- apply -f deployment.yaml```<br/><b>Remarque : </b>vous devriez avoir un message confirmant la création du déploiment : "deployment.apps/rest-api-spring-boot-k8s created"
-2.2. Vérifiez que le déployment est bien créé :```minikube kubectl -- get deployments```<br/>Cette commande doit vous lister des informations sur le Deployment comme suit :<br/>
+2. Créez le Deployment grâce à la commane <i>apply</i> : ```minikube kubectl -- apply -f deployment.yaml```<br/><b>Remarque : </b>Un message confirmant la création du déploiment doit être affiché : "deployment.apps/rest-api-spring-boot-k8s created"
+3. Vérifiez que le déployment est bien créé :```minikube kubectl -- get deployments```<br/>Cette commande doit vous lister des informations sur le Deployment comme suit :<br/>
 ![Capture1](https://github.com/user-attachments/assets/4ae6cad2-dea5-4013-adc8-a995094dc77a)
-2.3. Vérifiez qu'un pod a bien été lancé par le Deployment et qu'il est en status RUNNING : ```minikube kubectl -- get pods```<br/>Cette commande doit vous lister au moins un pod (si replicas = 1) :<br/>
+4. Vérifiez qu'un pod a bien été lancé et qu'il est en status RUNNING : ```minikube kubectl -- get pods```<br/>Cette commande doit vous lister au moins un pod (si replicas = 1) :<br/>
 ![Capture2](https://github.com/user-attachments/assets/fb14fb68-c068-423e-a20a-25abb2c7b09b)
-2.4. Affichez les informations du pod : E.g. ```minikube kubectl -- describe pod rest-api-spring-boot-k8s-7899bf44b6-tktn8```<br/>
+5. Affichez les informations du pod : E.g. ```minikube kubectl -- describe pod rest-api-spring-boot-k8s-7899bf44b6-tktn8```<br/>
 ![Capture3](https://github.com/user-attachments/assets/b6ed8e96-b7f0-4a73-a62b-5dd4a6c48e87)
-<br/>Comme vous pouvez le remarquer, le pod est contrôlé par un ReplicaSet, que vous pouvez gérer (affichier, supprimer pour créer un autre, etc.) : ```minikube kubectl -- get replicasets```
-2.5. Affichez les logs du pod : E.g. ```minikube kubectl -- logs rest-api-spring-boot-k8s-7899bf44b6-c6fj4```<br/>
+<br/>Comme vous pouvez le remarquer, le pod est <b><u>contrôlé par un ReplicaSet</u></b>, que vous pouvez gérer (affichier, supprimer pour créer un autre, etc.) : ```minikube kubectl -- get replicasets```
+6. Affichez les logs du pod : E.g. ```minikube kubectl -- logs rest-api-spring-boot-k8s-7899bf44b6-c6fj4```<br/>
 <br/><b>Remarque : </b>analysez les logs et vérifiez qu'il n'y a pas d'erreur dans l'application. En cas d'erreur, il faudra revoir le code source, regénérer le jar, re-build le Dockerfile pour avoir une nouvelle image, etc. 		
-2.6. Exposez votre service : ```minikube kubectl -- apply -f service.yaml```
+7. Exposez votre service : ```minikube kubectl -- apply -f service.yaml```
 <br/><b>Remarque : </b>on peut aussi exposer le service comme suit : ```minikube kubectl expose deployment rest-api-spring-boot-k8s --type=NodePort```
 Vous pouvez vérifier que le service est bien créé : ```minikube kubectl -- get services```
-2.7. A ce stade, l'application est déployée, le service est exposé, vous pouvez récupérer l'URL du service grâce à la commande suivante : ```minikube service rest-api-spring-boot-k8s-service --url```
+8. A ce stade, l'application est déployée, le service est exposé, vous pouvez récupérer l'URL du service grâce à la commande suivante : ```minikube service rest-api-spring-boot-k8s-service --url```
 <br/>Cette commande vous renvoit l'URL du service : E.g. ```http://192.168.59.100:31728```
-2.8 Dans un navigateur web, accédez à l'endpoint de votre API : E.g. ```http://192.168.59.100:31728/home/info```
+9. Dans un navigateur web, accédez à l'endpoint de votre API : E.g. ```http://192.168.59.100:31728/home/info```
