@@ -33,7 +33,7 @@
        - Lombok
      <br/><br/>Voici une capture d'écran du formulaire Spring Initializr :<br/>
        ![Spring_Initializr](https://github.com/user-attachments/assets/6011e732-c6ef-4ec9-a676-aa56e84c0e5a)
-    4. Cliquez sur le bouton <b>GENERATE</>, un fichier rest-api-spring-boot-k8s.zip sera téléchargé sur votre répertoire de téléchargement par défaut. Dézippez-le.
+    4. Cliquez sur le bouton <b>GENERATE<br/>Un fichier rest-api-spring-boot-k8s.zip sera téléchargé sur votre répertoire de téléchargement par défaut. Dézippez-le.
     5. Ouvrez IntelliJ IDEA, et allez dans File > Open... et naviguez jusqu'au dossier dézippé à l'étape précédente
     6. Appuyez sur Open, faites confiance au projet, et ouvrez le nouveau projet dans la même fenêtre IntelliJ.
     7. Une fois votre projet est ouvert et indexé, créez une API REST en suivant les étapes suivantes :
