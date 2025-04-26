@@ -81,7 +81,6 @@ spec:
   selector:
 	  matchLabels:
 		app: rest-api-spring-boot-k8s
-
   replicas: 1
   template:
 	metadata:
@@ -104,9 +103,17 @@ spec:
 3. Sur IntelliJ, à la racine de votre projet (au même niveau que le pom.xml), créez un fichier vide appelé service.yaml
 4. Complétez le service.yaml comme suit :<br/>
 ```
-	apiVersion: extensions/v1beta1
+	apiVersion: v1
 	kind: Service
+	metadata:
+	  name: rest-api-spring-boot-k8s-service
 	spec:
+	  selector:
+	    app: rest-api-spring-boot-k8s
+	  ports:
+	    - protocol: TCP
+	      port: 8080
+	      targetPort: 8080
 	  type: NodePort
 ```
 
