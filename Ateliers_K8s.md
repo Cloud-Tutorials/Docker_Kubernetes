@@ -13,7 +13,7 @@
 4. Vérifiez que minikube s'est bien installé en exécutant la commande suivante : <br/>```minikube status```<br/>Cette commande doit vous lister les status du host, kubelet, apiserver (RUNNING) et kubeconfig (CONFIGURED) comme suit :
 ![Capture](https://github.com/user-attachments/assets/66ae0c0d-f9ba-4faf-a12e-fc1b93c6c36b)
 6. Installez <b>kubectl</b> en exécutant la commande suivante : <br/>```minikube kubectl -- get pods```<br/><b>Remarque : </b>Si kubectl est déjà installé, vous aurez le message <i>"No resources found in default namespace"</i> sinon il sera téléchargé et installé avant que le message soit affiché.
-	
+
 ## Atelier 2. Créer une API REST avec Spring Boot
 1. Créez un projet Spring Boot vide
     1. Allez sur [Spring Initializr](https://start.spring.io/)
@@ -175,4 +175,129 @@ spec:
 ```
 3. Appliquez le nouveau déploiement grâce à la commane <i>apply</i> : ```minikube kubectl -- apply -f deployment-configmap.yaml```
 4. Vérifiez qu'un nouveau pod a bien créé et qu'il est en status RUNNING : ```minikube kubectl -- get pods```
-5. Dans un navigateur web, accédez à l'endpoint de votre API : E.g. ```http://192.168.59.100:31344/home/env```
+5. N'ayant pas besoin de réexposer le service, dans un navigateur web, accédez à l'endpoint de votre API : E.g. ```http://192.168.59.100:31344/home/env```
+
+## Atelier 7. Créer, déployer et utiliser un Secret en tant que variable d'environnement
+1. Sur IntelliJ, à la racine de votre projet (au même niveau que le pom.xml), créez un fichier vide appelé deployment-secret-env.yaml
+2. Complétez le deployment-secret-env.yaml comme suit :<br/>
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rest-api-spring-boot-k8s
+spec:
+  selector:
+    matchLabels:
+      app: rest-api-spring-boot-k8s
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: rest-api-spring-boot-k8s
+    spec:
+      containers:
+        - name: rest-api-spring-boot-k8s
+          image: docker.io/library/rest-api-spring-boot-k8s:1.0.2
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          env:
+            - name: env.namespace
+              value: default
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: rest-api-spring-boot-k8s-configmap
+                  key: dbHost
+            - name: DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: rest-api-spring-boot-k8s-configmap
+                  key: dbName
+            - name: DB_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: rest-api-spring-boot-k8s-configmap
+                  key: dbPort
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: rest-api-spring-boot-k8s-secret
+                  key: dbUserName
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: rest-api-spring-boot-k8s-secret
+                  key: dbPassword
+```
+3. Appliquez le nouveau déploiement grâce à la commane <i>apply</i> : ```minikube kubectl -- apply -f deployment-secret-env.yaml```
+4. Vérifiez qu'un nouveau pod a bien créé et qu'il est en status RUNNING : ```minikube kubectl -- get pods```
+5. N'ayant pas besoin de réexposer le service, dans un navigateur web, accédez à l'endpoint de votre API : E.g. ```http://192.168.59.100:31344/home/env```
+
+## Atelier 8. Créer, déployer et utiliser un Secret en tant que fichier montée dans un volume
+1. Sur IntelliJ, à la racine de votre projet (au même niveau que le pom.xml), créez un fichier vide appelé deployment-secret-file.yaml
+2. Complétez le deployment-secret-file.yaml comme suit :<br/>
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rest-api-spring-boot-k8s
+spec:
+  selector:
+    matchLabels:
+      app: rest-api-spring-boot-k8s
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: rest-api-spring-boot-k8s
+    spec:
+      containers:
+        - name: rest-api-spring-boot-k8s
+          image: docker.io/library/rest-api-spring-boot-k8s:1.0.0
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          env:
+            - name: env.namespace
+              value: default
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: rest-api-spring-boot-k8s-configmap
+                  key: dbHost
+            - name: DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: rest-api-spring-boot-k8s-configmap
+                  key: dbName
+            - name: DB_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: rest-api-spring-boot-k8s-configmap
+                  key: dbPort
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: rest-api-spring-boot-k8s-secret
+                  key: dbUserName
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: rest-api-spring-boot-k8s-secret
+                  key: dbPassword
+          volumeMounts:
+            - name: application-secrets
+              mountPath: "/etc/secret" #accessible via minikube kubectl -- exec -it rest-api-spring-boot-k8s-6ccc44b4c4-rfz9b -- ls /etc/secret
+              readOnly: true
+      volumes:
+        - name: application-secrets
+          secret:
+            secretName: rest-api-spring-boot-k8s-secret
+```
+3. Appliquez le nouveau déploiement grâce à la commande <i>apply</i> : ```minikube kubectl -- apply -f deployment-secret-file.yaml```
+4. Vérifiez qu'un nouveau pod a bien créé et qu'il est en status RUNNING : ```minikube kubectl -- get pods```
+5. Vérifier qu'un volume a bien été monté dans le répertoire /etc/secret du pod : ```minikube kubectl -- exec -it rest-api-spring-boot-k8s-6ccc44b4c4-rfz9b -- ls /etc/secret```
+   <br/>Cette commande vous permet de vous connecter sur le pod en mode interactif et exécuter la commande ls. Voici le résultat de la commande :<br/>
+6. ouvrir le ficher dbPassword pour afficher le mot de passe : ```minikube kubectl -- exec -it rest-api-spring-boot-k8s-6ccc44b4c4-rfz9b -- cat /etc/secret/dbPassword```
+   <br/>Voici le résultat de la commande :<br/>
