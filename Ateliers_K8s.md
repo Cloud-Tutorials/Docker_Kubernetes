@@ -70,8 +70,8 @@ ENTRYPOINT exec java -jar app.jar --debug
   - Quittez le terminal ssh : ```exit```
 		
 ## Atelier 4. Créer les objets K8s (Deployment et Service) nécessaires à la création et l'exposition du pod
-1. Sur IntelliJ, à la racine de votre projet (au même niveau que le pom.xml), créez un fichier vide appelé deployment.yaml
-2. Complétez le deployment.yaml comme suit :<br/>
+1. Sur IntelliJ, à la racine de votre projet (au même niveau que le pom.xml), créez un fichier vide appelé deployment-basic.yaml
+2. Complétez le deployment-basic.yaml comme suit :<br/>
 ```
 apiVersion: apps/v1
 kind: Deployment
@@ -79,27 +79,22 @@ metadata:
   name: rest-api-spring-boot-k8s
 spec:
   selector:
-	  matchLabels:
-		app: rest-api-spring-boot-k8s
+    matchLabels:
+      app: rest-api-spring-boot-k8s
   replicas: 1
   template:
-	metadata:
-	  labels:
-		app: rest-api-spring-boot-k8s
-	spec:
-	  containers:
-		- name: rest-api-spring-boot-k8s
-		  image: rest-api-spring-boot-k8s:1.0.0
-		  ports:
-			- containerPort: 8080
-		  env:
-			- name: env.namespace
-			  value: default
-	  volumes:
-		- name: application-config
-		  configMap:
-			name: rest-api-spring-boot-k8s
+    metadata:
+      labels:
+        app: rest-api-spring-boot-k8s
+    spec:
+      containers:
+        - name: rest-api-spring-boot-k8s
+          image: docker.io/library/rest-api-spring-boot-k8s:1.0.0
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
 ```
+<br/><b>Remarque : </b>Pour plus de détails sur l'écriture d'un Deployment, allez sur [Writing a Deployment Spec](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#writing-a-deployment-spec)
 3. Sur IntelliJ, à la racine de votre projet (au même niveau que le pom.xml), créez un fichier vide appelé service.yaml
 4. Complétez le service.yaml comme suit :<br/>
 ```
@@ -119,7 +114,7 @@ spec:
 
 ## Atelier 5. Déployer et lancer l'API REST sur minikube
 1. Sur la console PowerShell (ou l'invite de commande) positionnez-vous dans votre répertoire de travail du projet Java : <br\>E.g. ```cd C:\Users\Mohamed\Downloads\rest-api-spring-boot-k8s```
-2. Créez le Deployment grâce à la commane <i>apply</i> : ```minikube kubectl -- apply -f deployment.yaml```<br/><b>Remarque : </b>Un message confirmant la création du déploiment doit être affiché : "deployment.apps/rest-api-spring-boot-k8s created"
+2. Créez le Deployment grâce à la commane <i>apply</i> : ```minikube kubectl -- apply -f deployment-basic.yaml```<br/><b>Remarque : </b>Un message confirmant la création du déploiment doit être affiché : "deployment.apps/rest-api-spring-boot-k8s created"
 3. Vérifiez que le déployment est bien créé :```minikube kubectl -- get deployments```<br/>Cette commande doit vous lister des informations sur le Deployment comme suit :<br/>
 ![Capture1](https://github.com/user-attachments/assets/4ae6cad2-dea5-4013-adc8-a995094dc77a)
 4. Vérifiez qu'un pod a bien été lancé et qu'il est en status RUNNING : ```minikube kubectl -- get pods```<br/>Cette commande doit vous lister au moins un pod (si replicas = 1) :<br/>
@@ -134,6 +129,50 @@ Analysez les logs et vérifiez qu'il n'y a pas d'erreur dans l'application. En c
 8. A ce stade, l'application est déployée, le service est exposé, vous pouvez récupérer l'URL du service grâce à la commande suivante : ```minikube service rest-api-spring-boot-k8s-service --url```
 <br/>Cette commande vous renvoit l'URL du service :<br/>
 ![Capture6](https://github.com/user-attachments/assets/e85496d4-52ad-4e57-a987-2ff9fa35f242)
-10. Dans un navigateur web, accédez à l'endpoint de votre API : E.g. ```http://192.168.59.100:31344/home/info```
+9. Dans un navigateur web, accédez à l'endpoint de votre API : E.g. ```http://192.168.59.100:31344/home/info```
 ![Capture4](https://github.com/user-attachments/assets/177109a0-90f4-4158-9f1d-5b14ef32ba2a)
 
+## Atelier 6. Créer, déployer et utiliser un ConfigMap
+1. Sur IntelliJ, à la racine de votre projet (au même niveau que le pom.xml), créez un fichier vide appelé deployment-configmap.yaml
+2. Complétez le deployment-configmap.yaml comme suit :<br/>
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rest-api-spring-boot-k8s
+spec:
+  selector:
+    matchLabels:
+      app: rest-api-spring-boot-k8s
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: rest-api-spring-boot-k8s
+    spec:
+      containers:
+        - name: rest-api-spring-boot-k8s
+          image: docker.io/library/rest-api-spring-boot-k8s:1.0.2
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: rest-api-spring-boot-k8s-configmap
+                  key: dbHost
+            - name: DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: rest-api-spring-boot-k8s-configmap
+                  key: dbName
+            - name: DB_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: rest-api-spring-boot-k8s-configmap
+                  key: dbPort
+```
+3. Appliquez le nouveau déploiement grâce à la commane <i>apply</i> : ```minikube kubectl -- apply -f deployment-configmap.yaml```
+4. Vérifiez qu'un nouveau pod a bien créé et qu'il est en status RUNNING : ```minikube kubectl -- get pods```
+5. Dans un navigateur web, accédez à l'endpoint de votre API : E.g. ```http://192.168.59.100:31344/home/env```
