@@ -43,8 +43,8 @@
        - Générez le package du projet : ```mvn clean package -DskipTests=true```
          <br/><b>Remarque : </b>Vérifiez que le package <b>rest-api-spring-boot-k8s-0.0.1-SNAPSHOT.jar</b> est bien généré dans le répertoire : <b>rest-api-spring-boot-k8s\target</b>. En cas de problème, vérifiez votre JDK (dans File/Project Structure...) et Maven utilisé (dans File/Settings).
          <br/><br/>Voici une capture d'écran du projet complet (y compris les fichiers des ateliers qui suivent) :<br/>
-	 ![Capture](https://github.com/user-attachments/assets/88daa845-1910-4ab8-9b5b-56803409fee7)
-     	
+	 ![Capture](https://github.com/user-attachments/assets/86ca77de-f0ce-46bf-9d92-95423d5a96f2)    	
+
 ## Atelier 3. Créer le Dockerfile et générer l'Image Docker
 1. Sur IntelliJ, à la racine de votre projet (au même niveau que le pom.xml), créez un fichier vide appelé Dockerfile
 2. Complétez le Dockerfile avec les commandes suivantes :<br/>
