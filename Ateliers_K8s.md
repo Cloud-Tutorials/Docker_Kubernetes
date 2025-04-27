@@ -234,7 +234,7 @@ spec:
 4. Vérifiez qu'un nouveau pod a bien créé et qu'il est en status RUNNING : ```minikube kubectl -- get pods```
 5. N'ayant pas besoin de réexposer le service, dans un navigateur web, accédez à l'endpoint de votre API : E.g. ```http://192.168.59.100:31344/home/env```
 
-## Atelier 8. Créer, déployer et utiliser un Secret en tant que fichier montée dans un volume
+## Atelier 8. Créer, déployer et utiliser un Secret en tant que fichier monté dans un volume
 1. Sur IntelliJ, à la racine de votre projet (au même niveau que le pom.xml), créez un fichier vide appelé deployment-secret-file.yaml
 2. Complétez le deployment-secret-file.yaml comme suit :<br/>
 ```
