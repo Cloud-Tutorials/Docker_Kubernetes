@@ -54,7 +54,7 @@ COPY ./target/rest-api-spring-boot-k8s-0.0.1-SNAPSHOT.jar app.jar
 ENTRYPOINT exec java -jar app.jar --debug
 ```
 3. Ouvrez une console PowerShell (ou l'invite de commande) lancez minikube avec la commande suivante : ```minikube start```
-4. Vérifier que le cluster K8s est bien démarré : ```minikube status```
+4. Vérifiez que le cluster K8s est bien démarré : ```minikube status```
 <br/><b>Remarque : </b>Vous devriez obtenir le résultat suivant :<br/>
 ![Capture](https://github.com/user-attachments/assets/7944b417-8e1b-4166-8e71-6020771dbbf6)
 5. Accédez au noeud du cluster K8s en ssh : ```minikube ssh```
@@ -152,7 +152,7 @@ spec:
     spec:
       containers:
         - name: rest-api-spring-boot-k8s
-          image: docker.io/library/rest-api-spring-boot-k8s:1.0.2
+          image: docker.io/library/rest-api-spring-boot-k8s:1.0.0
           imagePullPolicy: Never
           ports:
             - containerPort: 8080
@@ -173,7 +173,7 @@ spec:
                   name: rest-api-spring-boot-k8s-configmap
                   key: dbPort
 ```
-3. Appliquez le nouveau déploiement grâce à la commane <i>apply</i> : ```minikube kubectl -- apply -f deployment-configmap.yaml```
+3. Appliquez le nouveau déploiement grâce à la commande <i>apply</i> : ```minikube kubectl -- apply -f deployment-configmap.yaml```
 4. Vérifiez qu'un nouveau pod a bien créé et qu'il est en status RUNNING : ```minikube kubectl -- get pods```
 5. N'ayant pas besoin de réexposer le service, dans un navigateur web, accédez à l'endpoint de votre API : E.g. ```http://192.168.59.100:31344/home/env```
 
@@ -197,7 +197,7 @@ spec:
     spec:
       containers:
         - name: rest-api-spring-boot-k8s
-          image: docker.io/library/rest-api-spring-boot-k8s:1.0.2
+          image: docker.io/library/rest-api-spring-boot-k8s:1.0.0
           imagePullPolicy: Never
           ports:
             - containerPort: 8080
@@ -230,7 +230,7 @@ spec:
                   name: rest-api-spring-boot-k8s-secret
                   key: dbPassword
 ```
-3. Appliquez le nouveau déploiement grâce à la commane <i>apply</i> : ```minikube kubectl -- apply -f deployment-secret-env.yaml```
+3. Appliquez le nouveau déploiement grâce à la commande <i>apply</i> : ```minikube kubectl -- apply -f deployment-secret-env.yaml```
 4. Vérifiez qu'un nouveau pod a bien créé et qu'il est en status RUNNING : ```minikube kubectl -- get pods```
 5. N'ayant pas besoin de réexposer le service, dans un navigateur web, accédez à l'endpoint de votre API : E.g. ```http://192.168.59.100:31344/home/env```
 
@@ -297,7 +297,7 @@ spec:
 ```
 3. Appliquez le nouveau déploiement grâce à la commande <i>apply</i> : ```minikube kubectl -- apply -f deployment-secret-file.yaml```
 4. Vérifiez qu'un nouveau pod a bien créé et qu'il est en status RUNNING : ```minikube kubectl -- get pods```
-5. Vérifier qu'un volume a bien été monté dans le répertoire /etc/secret du pod : ```minikube kubectl -- exec -it rest-api-spring-boot-k8s-6ccc44b4c4-rfz9b -- ls /etc/secret```
+5. Vérifiez qu'un volume a bien été monté dans le répertoire <b>/etc/secret</b> du pod : ```minikube kubectl -- exec -it rest-api-spring-boot-k8s-6ccc44b4c4-rfz9b -- ls /etc/secret```
    <br/>Cette commande vous permet de vous connecter sur le pod en mode interactif et exécuter la commande ls. Voici le résultat de la commande :<br/>
-6. ouvrir le ficher dbPassword pour afficher le mot de passe : ```minikube kubectl -- exec -it rest-api-spring-boot-k8s-6ccc44b4c4-rfz9b -- cat /etc/secret/dbPassword```
-   <br/>Voici le résultat de la commande :<br/>
+6. Ouvrez le ficher dbPassword pour afficher le mot de passe : ```minikube kubectl -- exec -it rest-api-spring-boot-k8s-6ccc44b4c4-rfz9b -- cat /etc/secret/dbPassword```
+   <br/>Voici le résultat attendu de la commande :<br/>
