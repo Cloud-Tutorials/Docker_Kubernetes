@@ -173,9 +173,11 @@ spec:
                   name: rest-api-spring-boot-k8s-configmap
                   key: dbPort
 ```
-3. Appliquez le nouveau déploiement grâce à la commande <i>apply</i> : ```minikube kubectl -- apply -f deployment-configmap.yaml```
-4. Vérifiez qu'un nouveau pod a bien créé et qu'il est en status RUNNING : ```minikube kubectl -- get pods```
-5. N'ayant pas besoin de réexposer le service, dans un navigateur web, accédez à l'endpoint de votre API : E.g. ```http://192.168.59.100:31344/home/env```
+3. Créez le ConfigMap grâce à la commande <i>apply</i> : ```minikube kubectl -- apply -f configmap.yaml```
+4. Mettez-à-jour le déploiement grâce à la commande <i>apply</i> : ```minikube kubectl -- apply -f deployment-configmap.yaml```
+5. Vérifiez qu'un nouveau pod a bien créé et qu'il est en status RUNNING : ```minikube kubectl -- get pods```
+6. Affichez les détails du pod et vérifiez ses variables d'environnement : E.g. ```minikube kubectl -- describe pod rest-api-spring-boot-k8s-6b8779c8cd-twhx8```
+7. N'ayant pas besoin de réexposer le service, dans un navigateur web, accédez à l'endpoint de votre API pour afficher les variables d'environnement : E.g. ```http://192.168.59.100:31344/home/env```
 
 ## Atelier 7. Créer, déployer et utiliser un Secret en tant que variable d'environnement
 1. Sur IntelliJ, à la racine de votre projet (au même niveau que le pom.xml), créez un fichier vide appelé deployment-secret-env.yaml
