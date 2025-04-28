@@ -178,7 +178,6 @@ spec:
 5. Vérifiez qu'un nouveau pod a bien créé et qu'il est en status RUNNING : ```minikube kubectl -- get pods```
 6. Affichez les détails du pod et vérifiez ses variables d'environnement : E.g. ```minikube kubectl -- describe pod rest-api-spring-boot-k8s-6b8779c8cd-twhx8```
    <br/>![Capture](https://github.com/user-attachments/assets/87eecb54-1bb8-446c-9c3a-0ec500fd0032)
-
 7. N'ayant pas besoin de réexposer le service, dans un navigateur web, accédez à l'endpoint de votre API pour afficher les variables d'environnement : E.g. ```http://192.168.59.100:31344/home/env```
 
 ## Atelier 7. Créer, déployer et utiliser un Secret en tant que variable d'environnement
