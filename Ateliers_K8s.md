@@ -305,7 +305,10 @@ spec:
 ```
 3. Le Secret existe déjà, il suffit de mettre-à-jour le déploiement grâce à la commande <i>apply</i> : ```minikube kubectl -- apply -f deployment-secret-file.yaml```
 4. Vérifiez qu'un nouveau pod a bien créé et qu'il est en status RUNNING : ```minikube kubectl -- get pods```
-5. Vérifiez qu'un volume a bien été monté dans le répertoire <b>/etc/secret</b> du pod : ```minikube kubectl -- exec -it rest-api-spring-boot-k8s-6ccc44b4c4-rfz9b -- ls /etc/secret```
-   <br/>Cette commande vous permet de vous connecter sur le pod en mode interactif et exécuter la commande ls. Voici le résultat de la commande :<br/>
-6. Ouvrez le ficher dbPassword pour afficher le mot de passe : ```minikube kubectl -- exec -it rest-api-spring-boot-k8s-6ccc44b4c4-rfz9b -- cat /etc/secret/dbPassword```
-   <br/>Voici le résultat attendu de la commande :<br/>
+5. Affichez les détails du pod et vérifiez qu'un nouveau volumen a été monté sur /etc/secret : E.g. ```minikube kubectl -- describe pod rest-api-spring-boot-k8s-6ccc44b4c4-rfz9b```
+   ![Capture](https://github.com/user-attachments/assets/cac5c9dc-4740-46bd-b62e-5655148e17fd)
+7. Vérifiez qu'un volume a bien été monté dans le répertoire <b>/etc/secret</b> du pod : ```minikube kubectl -- exec -it rest-api-spring-boot-k8s-6ccc44b4c4-rfz9b -- ls /etc/secret```
+   <br/>Cette commande vous permet de vous connecter sur le pod en mode interactif et exécuter la commande ls.
+8. Ouvrez le ficher dbPassword pour afficher le mot de passe : ```minikube kubectl -- exec -it rest-api-spring-boot-k8s-6ccc44b4c4-rfz9b -- cat /etc/secret/dbPassword```
+   <br/>Voici le résultat attendu des deux dernières commandes :
+![Capture](https://github.com/user-attachments/assets/6fde91ef-1595-484c-80c0-8cbeba811acd)
