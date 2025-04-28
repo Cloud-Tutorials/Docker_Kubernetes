@@ -130,7 +130,7 @@ Analysez les logs et vérifiez qu'il n'y a pas d'erreur dans l'application. En c
 <br/>Cette commande vous renvoit l'URL du service :<br/>
 ![Capture6](https://github.com/user-attachments/assets/e85496d4-52ad-4e57-a987-2ff9fa35f242)
 9. Dans un navigateur web, accédez à l'endpoint de votre API : E.g. ```http://192.168.59.100:31344/home/info```
-![Capture](https://github.com/user-attachments/assets/62d6c5b8-8afb-4280-b01c-5c165baf0f76)
+![Capture](https://github.com/user-attachments/assets/04097a7e-bf2c-4b2d-be74-4f7d05f80e21)
 
 ## Atelier 6. Créer, déployer et utiliser un ConfigMap
 1. Sur IntelliJ, à la racine de votre projet (au même niveau que le pom.xml), créez un fichier vide appelé deployment-configmap.yaml
