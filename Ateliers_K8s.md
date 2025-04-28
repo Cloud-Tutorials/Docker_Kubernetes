@@ -94,7 +94,7 @@ spec:
           ports:
             - containerPort: 8080
 ```
-<br/><b>Remarque : </b>Pour plus de détails sur l'écriture d'un Deployment, allez sur [Writing a Deployment Spec](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#writing-a-deployment-spec)<br/>
+<b>Remarque : </b>Pour plus de détails sur l'écriture d'un Deployment, allez sur [Writing a Deployment Spec](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#writing-a-deployment-spec)<br/>
 3. Sur IntelliJ, à la racine de votre projet (au même niveau que le pom.xml), créez un fichier vide appelé service.yaml
 4. Complétez le service.yaml comme suit :<br/>
 ```
