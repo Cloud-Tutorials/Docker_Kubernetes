@@ -179,6 +179,7 @@ spec:
 6. Affichez les détails du pod et vérifiez ses variables d'environnement : E.g. ```minikube kubectl -- describe pod rest-api-spring-boot-k8s-6b8779c8cd-twhx8```
    <br/>![Capture](https://github.com/user-attachments/assets/87eecb54-1bb8-446c-9c3a-0ec500fd0032)
 7. N'ayant pas besoin de réexposer le service, dans un navigateur web, accédez à l'endpoint de votre API pour afficher les variables d'environnement : E.g. ```http://192.168.59.100:31344/home/env```
+![Capture](https://github.com/user-attachments/assets/90b8c353-c0f3-4716-9346-c85fbf88e78a)
 
 ## Atelier 7. Créer, déployer et utiliser un Secret en tant que variable d'environnement
 1. Sur IntelliJ, à la racine de votre projet (au même niveau que le pom.xml), créez un fichier vide appelé deployment-secret-env.yaml
@@ -238,7 +239,8 @@ spec:
 5. Vérifiez qu'un nouveau pod a bien créé et qu'il est en status RUNNING : ```minikube kubectl -- get pods```
 6. Affichez les détails du pod et vérifiez de nouveau les variables d'environnement : E.g. ```minikube kubectl -- describe pod rest-api-spring-boot-k8s-6cdcf644c7-6nmn8```
 ![Capture](https://github.com/user-attachments/assets/b360db81-90a8-403c-b594-45345292365d)
-7. N'ayant pas besoin de réexposer le service, dans un navigateur web, accédez à l'endpoint de votre API : E.g. ```http://192.168.59.100:31344/home/env```
+7. N'ayant pas besoin de réexposer le service, dans un navigateur web, accédez à l'endpoint de votre API : E.g. ```http://192.168.59.100:31344/home/secrets```
+![Capture](https://github.com/user-attachments/assets/f81a4556-0047-464f-9161-e530a821e457)
 
 ## Atelier 8. Créer, déployer et utiliser un Secret en tant que fichier monté dans un volume
 1. Sur IntelliJ, à la racine de votre projet (au même niveau que le pom.xml), créez un fichier vide appelé deployment-secret-file.yaml
