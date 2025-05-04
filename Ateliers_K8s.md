@@ -491,7 +491,8 @@ et vérifiez l'existence de :
 - les annotations d'injection Vault
 - le token d'accès à Vault dans la variable d'environnement VAULT_CONFIG
 - le volume /vault/secrets qui contient le Secret
-- etc.<br/>
+- etc.
+
 6. Connectez-vous au pod et affichez les Secrets : E.g. ```minikube kubectl -- exec -it rest-api-spring-boot-k8s-67c89c675c-qb8tf -- /bin/sh```<br/>
 ![image](https://github.com/user-attachments/assets/bc80d376-3274-4b62-b059-9c0e4284c105)
 
