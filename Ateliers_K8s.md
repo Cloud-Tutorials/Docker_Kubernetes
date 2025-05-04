@@ -6,7 +6,7 @@
 	- VirtualBox 6.1
 	- IntelliJ IDEA 2021.3.3 (Community Edition)
 
- #### key words :
+ #### Key Words :
 	- Container, Docker, Kubernetes, minikube, kubectl
 	- API REST, Sping Boot
 	- Helm, Vault	
