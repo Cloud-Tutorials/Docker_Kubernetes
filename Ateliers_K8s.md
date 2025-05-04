@@ -114,23 +114,23 @@ spec:
 ```
 
 ## Atelier 5. Déployer et lancer l'API REST sur minikube
-1. Sur la console PowerShell (ou l'invite de commande) positionnez-vous dans votre répertoire de travail du projet Java : <br\>E.g. ```cd C:\Users\Mohamed\Downloads\rest-api-spring-boot-k8s```
-2. Créez le Deployment grâce à la commane <i>apply</i> : ```minikube kubectl -- apply -f deployment-basic.yaml```<br/><b>Remarque : </b>Un message confirmant la création du déploiment doit être affiché : "deployment.apps/rest-api-spring-boot-k8s created"
-3. Vérifiez que le déployment est bien créé :```minikube kubectl -- get deployments```<br/>Cette commande doit vous lister des informations sur le Deployment comme suit :<br/>
+1. Sur la console PowerShell (ou l'invite de commande) positionnez-vous dans votre répertoire de travail du projet Java :<br/>E.g. ```cd C:/Users/Mohamed/Downloads/K8S_REST_API/rest-api-spring-boot-k8s```
+3. Créez le Deployment grâce à la commane <i>apply</i> : ```minikube kubectl -- apply -f deployment-basic.yaml```<br/><b>Remarque : </b>Un message confirmant la création du déploiment doit être affiché : "deployment.apps/rest-api-spring-boot-k8s created"
+4. Vérifiez que le déployment est bien créé :```minikube kubectl -- get deployments```<br/>Cette commande doit vous lister des informations sur le Deployment comme suit :<br/>
 ![Capture1](https://github.com/user-attachments/assets/4ae6cad2-dea5-4013-adc8-a995094dc77a)
-4. Vérifiez qu'un pod a bien été lancé et qu'il est en status RUNNING : ```minikube kubectl -- get pods```<br/>Cette commande doit vous lister au moins un pod (si replicas = 1) :<br/>
+5. Vérifiez qu'un pod a bien été lancé et qu'il est en status RUNNING : ```minikube kubectl -- get pods```<br/>Cette commande doit vous lister au moins un pod (si replicas = 1) :<br/>
 ![Capture2](https://github.com/user-attachments/assets/fb14fb68-c068-423e-a20a-25abb2c7b09b)
-5. Affichez les informations du pod : E.g. ```minikube kubectl -- describe pod rest-api-spring-boot-k8s-7899bf44b6-tktn8```<br/>
+6. Affichez les informations du pod : E.g. ```minikube kubectl -- describe pod rest-api-spring-boot-k8s-7899bf44b6-tktn8```<br/>
 ![Capture3](https://github.com/user-attachments/assets/b6ed8e96-b7f0-4a73-a62b-5dd4a6c48e87)
 <br/>Comme vous pouvez le remarquer, le pod est <b><u>contrôlé par un ReplicaSet</u></b>, que vous pouvez gérer (affichier, supprimer pour créer un autre, etc.) : ```minikube kubectl -- get replicasets```
-6. Affichez les logs du pod : E.g. ```minikube kubectl -- logs rest-api-spring-boot-k8s-7899bf44b6-c6fj4```<br/>
+7. Affichez les logs du pod : E.g. ```minikube kubectl -- logs rest-api-spring-boot-k8s-7899bf44b6-c6fj4```<br/>
 Analysez les logs et vérifiez qu'il n'y a pas d'erreur dans l'application. En cas d'erreur, il faudra revoir le code source, regénérer le jar, re-build le Dockerfile pour avoir une nouvelle image, etc. 		
-7. Exposez votre service via la commande suivante : ```minikube kubectl -- apply -f service.yaml```
+8. Exposez votre service via la commande suivante : ```minikube kubectl -- apply -f service.yaml```
 <br/>Vous pouvez vérifier que le service est bien créé : ```minikube kubectl -- get services```
-8. A ce stade, l'application est déployée, le service est exposé, vous pouvez récupérer l'URL du service grâce à la commande suivante : ```minikube service rest-api-spring-boot-k8s-service --url```
+9. A ce stade, l'application est déployée, le service est exposé, vous pouvez récupérer l'URL du service grâce à la commande suivante : ```minikube service rest-api-spring-boot-k8s-service --url```
 <br/>Cette commande vous renvoit l'URL du service :<br/>
 ![Capture6](https://github.com/user-attachments/assets/e85496d4-52ad-4e57-a987-2ff9fa35f242)
-9. Dans un navigateur web, accédez à l'endpoint de votre API : E.g. ```http://192.168.59.100:31344/home/info```
+10. Dans un navigateur web, accédez à l'endpoint de votre API : E.g. ```http://192.168.59.100:31344/home/info```
 ![Capture](https://github.com/user-attachments/assets/04097a7e-bf2c-4b2d-be74-4f7d05f80e21)
 
 ## Atelier 6. Créer, déployer et utiliser un ConfigMap
