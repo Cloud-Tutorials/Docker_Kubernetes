@@ -482,10 +482,10 @@ spec:
           secret:
             secretName: rest-api-spring-boot-k8s-secret
 ```
-<br/>Ce manifeste de déploiement crée une réplique (replicas: 1) d'un pod rest-api-spring-boot-k8s configuré pour récupérer en toute sécurité les secrets de Vault. L'agent Vault injecte le secret my-vault-secret dans le pod, conformément aux règles de sécurité spécifiées. Les secrets sont stockés dans le système de fichiers du pod et sont accessibles à l'application exécutée dans le conteneur. Le compte de service rest-api-spring-boot-k8s-service-account, doté des autorisations nécessaires, est utilisé pour l'authentification auprès de Vault.
-3. Mettez-à-jour le déploiement grâce à la commande <i>apply</i> : ```minikube kubectl -- apply -f deployment-secrets-vault.yaml```
-4. Vérifiez qu'un nouveau pod a bien créé et qu'il est en status RUNNING : ```minikube kubectl -- get pods```
-5. Affichez les détails du pod et vérifiez xxxxx : E.g. ```minikube kubectl -- describe pod rest-api-spring-boot-k8s-6cdcf644c7-6nmn8```
+<br/>Ce manifeste de déploiement crée une réplique (replicas: 1) d'un pod rest-api-spring-boot-k8s configuré pour récupérer en toute sécurité les secrets de Vault. L'agent Vault injecte le secret my-vault-secret dans le pod, conformément aux règles de sécurité spécifiées. Les secrets sont stockés dans le système de fichiers du pod et sont accessibles à l'application exécutée dans le conteneur. Le compte de service rest-api-spring-boot-k8s-service-account, doté des autorisations nécessaires, est utilisé pour l'authentification auprès de Vault.<br/>
+3. Mettez-à-jour le déploiement grâce à la commande <i>apply</i> : ```minikube kubectl -- apply -f deployment-secrets-vault.yaml```<br/>
+4. Vérifiez qu'un nouveau pod a bien créé et qu'il est en status RUNNING : ```minikube kubectl -- get pods```<br/>
+5. Affichez les détails du pod et vérifiez xxxxx : E.g. ```minikube kubectl -- describe pod rest-api-spring-boot-k8s-6cdcf644c7-6nmn8```<br/>
 6. Connectez-vous au pod et affichez les Secrets : xxxx
 
 
