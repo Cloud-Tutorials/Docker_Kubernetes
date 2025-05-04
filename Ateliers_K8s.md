@@ -313,3 +313,21 @@ spec:
 8. Ouvrez le ficher dbPassword pour afficher le mot de passe : ```minikube kubectl -- exec -it rest-api-spring-boot-k8s-6ccc44b4c4-rfz9b -- cat /etc/secret/dbPassword```
    <br/>Voici le résultat attendu des deux dernières commandes :
 ![Capture](https://github.com/user-attachments/assets/6fde91ef-1595-484c-80c0-8cbeba811acd)
+
+## Atelier 9. installer Helm et HashiCorp Vault sur le Cluster Kubernetes
+### Installation d'Helm
+<b>Helm</b> est un 'gestionnaire de paquets' pour Kubernetes permettant de définir, d’installer et de mettre à jour des applications Kubernetes grâce à ses chartes. Une <b>Chart Helm</b> est un paquet contentant un ensemble 'cohérent' et 'reproductible' d’applications et de leurs dépendances.
+<br/>Sur une machine Windows, Helm peut être installé en téléchargeant l’exécutable depuis le site officiel d’[Helm](https://helm.sh/docs/intro/install/) et en l’ajoutant à la variable d’environnement PATH. <br/>L’installation d’Helm peut être vérifiée en affichant la version installée : ```helm version```
+### Installation de HashiCorp Vault
+HashiCorp Vault peut être installé depuis le dépôt Helm de HashiCorp. Pour cela, il faut :
+1. ajouter le référentiel HashiCorp Helm à votre configuration Helm grâce à la commande : ```helm repo add hashicorp https://helm.releases.hashicorp.com```
+2. et ensuite installer Vault à l'aide d'une Chart Helm du référentiel HashiCorp avec la commande suivante : ```helm install vault hashicorp/vault --set='server.dev.enabled=true' --set='ui.enabled=true' --set='ui.serviceType=LoadBalancer' ```
+<br/>L’installation de Vault peut être vérifiée en affichant ses pods : ```minikube kubectl -- get all```
+
+<br/>Remarquons que nous disposons de deux pods :
+ - un pod <b>vault-0</b>  qui gère les Secrets
+ - un pod <b>vault-agent-injector</b> qui se charge de récupérer les Secrets et de les injecter dans les pods applicatifs <u>autorisés</u>
+ 
+## Atelier 10. gérer les Secrets K8s avec HashiCorp Vault
+
+
