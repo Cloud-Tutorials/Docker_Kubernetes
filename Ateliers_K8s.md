@@ -319,7 +319,7 @@ spec:
    <br/>Voici le résultat attendu des deux dernières commandes :
 ![Capture](https://github.com/user-attachments/assets/6fde91ef-1595-484c-80c0-8cbeba811acd)
 
-## Atelier 9. installer Helm et HashiCorp Vault sur le Cluster Kubernetes
+## Atelier 9. Installer Helm et HashiCorp Vault sur le Cluster Kubernetes
 ### Installation d'Helm
 <b>Helm</b> est un 'gestionnaire de paquets' pour Kubernetes permettant de définir, d’installer et de mettre à jour des applications Kubernetes grâce à ses chartes. Une <b>Chart Helm</b> est un paquet contentant un ensemble 'cohérent' et 'reproductible' d’applications et de leurs dépendances.
 <br/>Sur une machine Windows, Helm peut être installé en téléchargeant l’exécutable depuis le site officiel d’[Helm](https://helm.sh/docs/intro/install/) et en l’ajoutant à la variable d’environnement PATH. <br/>L’installation d’Helm peut être vérifiée en affichant la version installée : ```helm version```
@@ -335,9 +335,50 @@ helm install vault hashicorp/vault \
 ```
 <br/>L’installation de Vault peut être vérifiée en affichant ses pods : ```minikube kubectl -- get all```
 <br/>Remarquons que nous disposons de deux pods :
- - un pod <b>vault-0</b>  qui gère les Secrets
+ - un pod <b>vault-0</b> qui gère les Secrets
  - un pod <b>vault-agent-injector</b> qui se charge de récupérer les Secrets et de les injecter dans les pods applicatifs <u>autorisés</u>
  
-## Atelier 10. gérer les Secrets K8s avec HashiCorp Vault
+## Atelier 10. Gérer les Secrets K8s avec HashiCorp Vault
+Cette étape consiste à configurer les politiques de sécurité et les méthodes d'authentification de Vault pour gérer les accès aux Secrets. Cela permet de garantir que seuls les pods autorisés peuvent récupérer les données sensibles de Vault.
+<br/>Pour effectuer la configuration initiale, il faut se connecter au pod <b>vault-0</b> avec la commande suivante : ```minikube kubectl -- exec -it vault-0 -- /bin/sh```
+### Créer et Appliquer une politique de sécurité
+Une fois connecté au pod <b>vault-0</b>, il faut y créer une politique autorisant la lecture des secrets. Cette politique sera associée à un rôle permettant d'accorder l'accès à des comptes de service Kubernetes spécifiques. Les politiques sont écrites en HCL ou JSON et décrivent les chemins dans Vault auxquels un utilisateur ou une machine est autorisé à accéder. Voici un exempe de création d'une politique :<br/>
+```
+cat <<EOF > /home/vault/read-policy.hcl
+path "secret*" {
+  capabilities = ["read"]
+}
+EOF
+```
+<br/>Cette politique peut-être appliquée comme suit : ```vault policy write read-policy /home/vault/read-policy.hcl```
+<br/>D'une manière générale, voici la syntaxe permettant d'appliquer une politique : ```vault policy write <policy-name> /path/to/policy.hcl```
+### Activer et Configurer l'authentification Kubernetes
+<br/>Il ne faut pas oublier d'activer la méthode d’authentification Kubernetes dans Vault. Voici la commande : ```vault auth enable kubernetes```
+<br/>Pour communiquer avec le serveur API Kubernetes, il faut également appliquer la configuration Vault comme suit :<br\>
+```
+vault write auth/kubernetes/config \
+   token_reviewer_jwt="$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)" \
+   kubernetes_host=https://${KUBERNETES_PORT_443_TCP_ADDR}:443 \
+   kubernetes_ca_cert=@/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+```
+### Créer un rôle
+Enfin, il faut créer un rôle (ex. <b>vault-role</b>) qui lie la politique ci-dessus (ex. <b>read-policy</b>) à un compte de service Kubernetes (ex. <b>rest-api-spring-boot-k8s-service-account</b>) dans un espace de noms spécifique (dans ce tutotiel, en se contente de l'espace de nom par défaut, i.e. <b>default</b>). Cela permet au compte de service d'accéder aux secrets stockés dans Vault pendant une durée spécifiée via le paramètre TTL (Time-To-Live). Voici la commande :<br/>
+```
+vault write auth/kubernetes/role/vault-role \
+   bound_service_account_names=rest-api-spring-boot-k8s-service-account \
+   bound_service_account_namespaces=default \
+   policies=read-policy \
+   ttl=1h
+```
+<br/>Notez qu'il est possible de spécifier plusieurs comptes de services et plusieurs espaces de noms; Voici la syntaxe : 
+```
+vault write auth/kubernetes/role/<my-role> \
+   bound_service_account_names=sa1, sa2 \
+   bound_service_account_namespaces=namespace1, namespace2 \
+   policies=<policy-name> \
+   ttl=<duration>
+```
+### Créer des Secrets dans Vault
+
 
 
