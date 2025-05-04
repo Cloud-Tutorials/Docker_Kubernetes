@@ -7,7 +7,7 @@
 	- IntelliJ IDEA 2021.3.3 (Community Edition)
 
  #### key words :
-	- Container, Docker, Kubernetes
+	- Container, Docker, Kubernetes, minikube, kubectl
 	- API REST, Sping Boot
 	- Helm, Vault	
  
