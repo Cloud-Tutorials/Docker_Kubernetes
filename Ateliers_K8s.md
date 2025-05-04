@@ -1,11 +1,16 @@
 # Ateliers de prise en main de Kubernetes
 #### Environnement de travail :
-	- Windows 8.1	
+	- Windows 8.1
 	- JDK 17.0.12	
 	- Maven 3.6.3
 	- VirtualBox 6.1
 	- IntelliJ IDEA 2021.3.3 (Community Edition)
 
+ #### key words :
+	- Container, Docker, Kubernetes
+	- API REST, Sping Boot
+	- Helm, Vault	
+ 
 ## Atelier 1. Installer minikube & kubectl
 1. Téléchargez <b>minikube-installer.exe</b> du site officiel [Minikube](https://minikube.sigs.k8s.io/docs/start/?arch=%2Fwindows%2Fx86-64%2Fstable%2F.exe+download) qui s'adapte automatiquement à votre OS.
 2. Exécutez minikube-installer.exe et suivez les étapes d'installation.
