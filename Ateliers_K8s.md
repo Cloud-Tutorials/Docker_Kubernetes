@@ -379,6 +379,113 @@ vault write auth/kubernetes/role/<my-role> \
    ttl=<duration>
 ```
 ### Créer des Secrets dans Vault
-
+Les secrets peuvent être créés via la CLI Vault, en se connectant au pod <b>vault-0</b>, ou plus simplement via l’UI Vault. L'URL de l'UI Vault est celle du service <b>vault-ui</b> qui peut être obtenue grâce à la commande : ```minikube service vault-ui --url```
+Exemple :
+![Capture](https://github.com/user-attachments/assets/dc8c594d-c031-4f68-be11-fbf611c34147)
+Vault UI est donc accessible via l’adresse : http://192.168.59.105:31897
+![image](https://github.com/user-attachments/assets/a0642442-ec47-4a4d-b5bd-5c5d953dda49)
+Pour se connecter, choisissez la méthode <b>Token</b> et saisissez la valeur <b>root</b> comme valeur du token.
+</br>Accédez à l'onglet <b>Secrets Engines > secret</b> et cliquez ensuite sur <b>Create secret</b> en haut à droite.
+![image](https://github.com/user-attachments/assets/09554367-9c3c-4f26-ab1b-d94e51120225)
+Renseignez ensuite les champs requis pour créer un secret :
+![image](https://github.com/user-attachments/assets/14079110-2fe6-46b5-8438-265c7a98d90d)
+Cliquez enfin sur "Save" pour créer le secret. Et voilà, vous avez un premier Secret appelé "my-vault-secret" stocké dans Vault et contenant deux entrées "username" et "password".
+### Accéder à un Secret Vault depuis un pod applicatif
+A ce stade, nous avons :
+- installé Vault et configuré un rôle Vault (ex. <b>vault-role</b>) pour permettre au compte de service (ex. <b>rest-api-spring-boot-k8s-service-account</b>) d’accéder aux secrets stockés dans Vault.
+- créé un Secret <b>my-vault-secret</b> avec deux paires clé-valeur.
+Nous allons maintenant créer un déploiement Kubernetes pouvant accéder à ce Secret.
+#### Créer un compte de service (Service Account)
+Ce compte de service dispose d’autorisations pour le rôle Vault tel que défini dans l’étape « Créer un rôle » ci-dessus.
+Comme nous l'avons défini à l'étape "Créer un rôle", nous avons besoin d'un Service Account appelé <b>rest-api-spring-boot-k8s-service-account</b> lié au rôle <b>vault-role</b>. Ce Service Account peut être créé comme suit :
+1. Sur IntelliJ, à la racine de votre projet (au même niveau que le pom.xml), créez un fichier vide appelé service-account.yaml
+2. Complétez le service-account.yaml comme suit :<br/>
+```
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: rest-api-spring-boot-k8s-service-account
+  labels:
+    app: rest-api-spring-boot-k8s
+```
+3. Créez le Service Account grâce à la commande apply : ```minikube kubectl -- apply -f service-account.yaml```
+#### Créer un pod applicatif ayant accès au Secret dans Vault
+1. Sur IntelliJ, à la racine de votre projet (au même niveau que le pom.xml), créez un fichier vide appelé deployment-secrets-vault.yaml
+2. Complétez le deployment-secrets-vault.yaml comme suit :<br/>
+```
+#how to write a deployment spec : https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#writing-a-deployment-spec
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rest-api-spring-boot-k8s
+spec:
+  selector:
+    matchLabels:
+      app: rest-api-spring-boot-k8s
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: rest-api-spring-boot-k8s
+      annotations:
+        vault.hashicorp.com/agent-inject: "true" #enable Vault Agent injection for this pod.
+        vault.hashicorp.com/agent-inject-status: "update" #ensure the status of secret injection is updated.
+        vault.hashicorp.com/agent-inject-secret-my-vault-secret: "secret/my-vault-secret" #the secret stored at secret/my-vault-secret in Vault should be injected
+        vault.hashicorp.com/agent-inject-template-my-vault-secret: | #the template for the injected my-vault-secret, specifying the format in which the secret will be written.
+          {{- with secret "secret/my-vault-secret" -}}
+          username={{ .Data.data.username }}
+          password={{ .Data.data.password }}
+          {{- end }}
+        vault.hashicorp.com/role: "vault-role" #the Vault role to be used for authentication
+    spec:
+      serviceAccountName: rest-api-spring-boot-k8s-service-account #the service account that has permissions to access Vault.
+      containers:
+        - name: rest-api-spring-boot-k8s
+          image: docker.io/library/rest-api-spring-boot-k8s:1.0.0
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          env:
+            - name: env.namespace
+              value: default
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: rest-api-spring-boot-k8s-configmap
+                  key: dbHost
+            - name: DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: rest-api-spring-boot-k8s-configmap
+                  key: dbName
+            - name: DB_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: rest-api-spring-boot-k8s-configmap
+                  key: dbPort
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: rest-api-spring-boot-k8s-secret
+                  key: dbUserName
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: rest-api-spring-boot-k8s-secret
+                  key: dbPassword
+          volumeMounts:
+            - name: application-secrets
+              mountPath: "/etc/secret" #accessible via minikube kubectl -- exec -it rest-api-spring-boot-k8s-6ccc44b4c4-rfz9b -- ls /etc/secret
+              readOnly: true
+      volumes:
+        - name: application-secrets
+          secret:
+            secretName: rest-api-spring-boot-k8s-secret
+```
+<br/>Ce manifeste de déploiement crée une réplique (replicas: 1) d'un pod rest-api-spring-boot-k8s configuré pour récupérer en toute sécurité les secrets de Vault. L'agent Vault injecte le secret my-vault-secret dans le pod, conformément aux règles de sécurité spécifiées. Les secrets sont stockés dans le système de fichiers du pod et sont accessibles à l'application exécutée dans le conteneur. Le compte de service rest-api-spring-boot-k8s-service-account, doté des autorisations nécessaires, est utilisé pour l'authentification auprès de Vault.
+3. Mettez-à-jour le déploiement grâce à la commande <i>apply</i> : ```minikube kubectl -- apply -f deployment-secrets-vault.yaml```
+4. Vérifiez qu'un nouveau pod a bien créé et qu'il est en status RUNNING : ```minikube kubectl -- get pods```
+5. Affichez les détails du pod et vérifiez xxxxx : E.g. ```minikube kubectl -- describe pod rest-api-spring-boot-k8s-6cdcf644c7-6nmn8```
+6. Connectez-vous au pod et affichez les Secrets : xxxx
 
 
