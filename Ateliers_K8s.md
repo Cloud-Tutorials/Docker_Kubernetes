@@ -487,11 +487,11 @@ spec:
 4. Vérifiez qu'un nouveau pod a bien créé et qu'il est en status RUNNING : ```minikube kubectl -- get pods```<br/>
 5. Affichez les détails du pod : E.g. ```minikube kubectl -- describe pod rest-api-spring-boot-k8s-67c89c675c-qb8tf```<br/>
 et vérifiez l'existence de :
-- Service Account:  rest-api-spring-boot-k8s-service-account
-- les annotations d'injection Vault
-- le token d'accès à Vault dans la variable d'environnement VAULT_CONFIG
-- le volume /vault/secrets qui contient le Secret
-- etc.
+	- Service Account:  rest-api-spring-boot-k8s-service-account
+	- les annotations d'injection Vault
+	- le token d'accès à Vault dans la variable d'environnement VAULT_CONFIG
+	- le volume /vault/secrets qui contient le Secret
+	- etc.
 6. Connectez-vous au pod et affichez les Secrets : E.g. ```minikube kubectl -- exec -it rest-api-spring-boot-k8s-67c89c675c-qb8tf -- /bin/sh```<br/>
 ![image](https://github.com/user-attachments/assets/bc80d376-3274-4b62-b059-9c0e4284c105)
 
