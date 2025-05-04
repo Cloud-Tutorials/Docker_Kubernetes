@@ -234,7 +234,7 @@ spec:
                   name: rest-api-spring-boot-k8s-secret
                   key: dbPassword
 ```
-3. Créez le Secret grâce à la commande apply : minikube kubectl -- apply -f secret.yaml
+3. Créez le Secret grâce à la commande apply : ```minikube kubectl -- apply -f secret.yaml```
 4. Mettez-à-jour le déploiement grâce à la commande <i>apply</i> : ```minikube kubectl -- apply -f deployment-secret-env.yaml```
 5. Vérifiez qu'un nouveau pod a bien créé et qu'il est en status RUNNING : ```minikube kubectl -- get pods```
 6. Affichez les détails du pod et vérifiez de nouveau les variables d'environnement : E.g. ```minikube kubectl -- describe pod rest-api-spring-boot-k8s-6cdcf644c7-6nmn8```
