@@ -1,0 +1,37 @@
+#how to write a deployment spec : https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#writing-a-deployment-spec
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rest-api-spring-boot-k8s
+spec:
+  selector:
+    matchLabels:
+      app: rest-api-spring-boot-k8s
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: rest-api-spring-boot-k8s
+    spec:
+      containers:
+        - name: rest-api-spring-boot-k8s
+          image: docker.io/library/rest-api-spring-boot-k8s:1.0.0
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: rest-api-spring-boot-k8s-configmap
+                  key: dbHost
+            - name: DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: rest-api-spring-boot-k8s-configmap
+                  key: dbName
+            - name: DB_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: rest-api-spring-boot-k8s-configmap
+                  key: dbPort

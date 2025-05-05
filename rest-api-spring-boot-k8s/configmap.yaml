@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rest-api-spring-boot-k8s-configmap
+data:
+  dbHost: "db.training.mtalha.fr"
+  dbName: "mydb"
+  dbPort: "12345"
