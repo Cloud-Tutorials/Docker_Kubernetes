@@ -48,7 +48,8 @@
        - Générez le package du projet : ```mvn clean package -DskipTests=true```
          <br/><b>Remarque : </b>Vérifiez que le package <b>rest-api-spring-boot-k8s-0.0.1-SNAPSHOT.jar</b> est bien généré dans le répertoire : <b>rest-api-spring-boot-k8s\target</b>. En cas de problème, vérifiez votre JDK (dans File/Project Structure...) et Maven utilisé (dans File/Settings).
          <br/><br/>Voici une capture d'écran du projet complet (y compris les fichiers des ateliers qui suivent) :<br/>
-	 ![Sans titre](https://github.com/user-attachments/assets/8fadf618-e293-451e-8f42-b90a1e069811)
+	 ![image](https://github.com/user-attachments/assets/b2bf26c0-0add-44ce-8612-e5ba2bca6807)
+
 
 
 ## Atelier 3. Créer le Dockerfile et générer l'Image Docker
