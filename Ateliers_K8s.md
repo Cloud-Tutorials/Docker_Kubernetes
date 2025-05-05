@@ -77,7 +77,7 @@ ENTRYPOINT exec java -jar app.jar --debug
 		
 ## Atelier 4. Créer les objets K8s (Deployment et Service) nécessaires à la création et l'exposition du pod
 1. Sur IntelliJ, à la racine de votre projet (au même niveau que le pom.xml), créez un fichier vide appelé deployment-basic.yaml
-2. Complétez le deployment-basic.yaml comme suit :<br/>
+2. Complétez le Manifest deployment-basic.yaml comme suit :<br/>
 ```
 apiVersion: apps/v1
 kind: Deployment
@@ -140,7 +140,7 @@ Analysez les logs et vérifiez qu'il n'y a pas d'erreur dans l'application. En c
 
 ## Atelier 6. Créer, déployer et utiliser un ConfigMap
 1. Sur IntelliJ, à la racine de votre projet (au même niveau que le pom.xml), créez un fichier vide appelé deployment-configmap.yaml
-2. Complétez le deployment-configmap.yaml comme suit :<br/>
+2. Complétez le Manifest deployment-configmap.yaml comme suit :<br/>
 ```
 apiVersion: apps/v1
 kind: Deployment
@@ -189,7 +189,7 @@ spec:
 
 ## Atelier 7. Créer, déployer et utiliser un Secret en tant que variable d'environnement
 1. Sur IntelliJ, à la racine de votre projet (au même niveau que le pom.xml), créez un fichier vide appelé deployment-secret-env.yaml
-2. Complétez le deployment-secret-env.yaml comme suit :<br/>
+2. Complétez le Manifest deployment-secret-env.yaml comme suit :<br/>
 ```
 apiVersion: apps/v1
 kind: Deployment
@@ -250,7 +250,7 @@ spec:
 
 ## Atelier 8. Créer, déployer et utiliser un Secret en tant que fichier monté dans un volume
 1. Sur IntelliJ, à la racine de votre projet (au même niveau que le pom.xml), créez un fichier vide appelé deployment-secret-file.yaml
-2. Complétez le deployment-secret-file.yaml comme suit :<br/>
+2. Complétez le Manifest deployment-secret-file.yaml comme suit :<br/>
 ```
 apiVersion: apps/v1
 kind: Deployment
@@ -411,7 +411,7 @@ metadata:
 3. Créez le Service Account grâce à la commande apply : ```minikube kubectl -- apply -f service-account.yaml```
 #### Créer un pod applicatif ayant accès au Secret dans Vault
 1. Sur IntelliJ, à la racine de votre projet (au même niveau que le pom.xml), créez un fichier vide appelé deployment-secrets-vault.yaml
-2. Complétez le deployment-secrets-vault.yaml comme suit :<br/>
+2. Complétez le Manifest deployment-secrets-vault.yaml comme suit :<br/>
 ```
 #how to write a deployment spec : https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#writing-a-deployment-spec
 apiVersion: apps/v1
