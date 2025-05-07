@@ -53,7 +53,7 @@
 
 
 ## Atelier 3. Créer le Dockerfile et générer l'Image Docker
-1. Sur IntelliJ, à la racine de votre projet (au même niveau que le pom.xml), créez un fichier vide appelé Dockerfile
+1. Sur IntelliJ, à la racine de votre projet (au même niveau que le pom.xml), créez un fichier vide appelé Dockerfile (il n'ya pas besoin de préciser une extension du fichier)
 2. Complétez le Dockerfile avec les commandes suivantes :<br/>
 ```
 FROM openjdk:17-alpine
