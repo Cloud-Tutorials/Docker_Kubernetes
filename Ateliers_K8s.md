@@ -357,7 +357,7 @@ helm install vault hashicorp/vault --set='server.dev.enabled=true' --set='ui.ena
 <br/>L’installation de Vault peut être vérifiée en affichant ses pods : ```minikube kubectl -- get all```
 <br/>Remarquons que nous disposons de deux pods :
  - un pod <b>vault-0</b> qui gère les Secrets
- - un pod <b>vault-agent-injector</b> qui se charge de récupérer les Secrets et de les injecter dans les pods applicatifs <u>autorisés</u>
+ - un pod <b>vault-agent-injector</b> qui se charge de récupérer les Secrets et de les injecter dans les pods applicatifs 'autorisés'
  
 ## Atelier 10. Gérer les Secrets K8s avec HashiCorp Vault
 Cette étape consiste à configurer les politiques de sécurité et les méthodes d'authentification de Vault pour gérer les accès aux Secrets. Cela permet de garantir que seuls les pods autorisés peuvent récupérer les données sensibles de Vault.
