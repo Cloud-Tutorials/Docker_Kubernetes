@@ -363,7 +363,7 @@ helm install vault hashicorp/vault --set='server.dev.enabled=true' --set='ui.ena
 Cette étape consiste à configurer les politiques de sécurité et les méthodes d'authentification de Vault pour gérer les accès aux Secrets. Cela permet de garantir que seuls les pods autorisés peuvent récupérer les données sensibles de Vault.
 <br/>Pour effectuer la configuration initiale, il faut se connecter au pod <b>vault-0</b> avec la commande suivante :<br/> ```minikube kubectl -- exec -it vault-0 -- /bin/sh```
 ### Créer et Appliquer une politique de sécurité
-Une fois connecté au pod <b>vault-0</b>, il faut y créer une politique autorisant la lecture des secrets. Cette politique sera associée à un rôle permettant d'accorder l'accès à des comptes de service Kubernetes spécifiques. Les politiques sont écrites en HCL ou JSON et décrivent les chemins dans Vault auxquels un utilisateur ou une machine est autorisé à accéder. Voici un exempe de création d'une politique :<br/>
+Une fois connecté au pod <b>vault-0</b>, il faut y créer une politique autorisant la lecture des secrets. Cette politique sera associée à un rôle permettant d'accorder l'accès à des comptes de service Kubernetes spécifiques. Les politiques sont écrites en HCL (Hashicorp Configuration Language) ou JSON et décrivent les chemins dans Vault auxquels une machine ou un utilisateur est autorisé à accéder. Voici un exempe de création d'une politique :<br/>
 ```
 cat <<EOF > /home/vault/read-policy.hcl
 path "secret*" {
