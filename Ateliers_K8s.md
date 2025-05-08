@@ -515,6 +515,8 @@ et vérifiez l'existence de :
 - le volume /vault/secrets qui contient le Secret
 - etc.
 <br/>
-6. Connectez-vous au pod et affichez les Secrets : E.g. ```minikube kubectl -- exec -it rest-api-spring-boot-k8s-67c89c675c-qb8tf -- /bin/sh```<br/>
-![440188808-bc80d376-3274-4b62-b059-9c0e4284c105](https://github.com/user-attachments/assets/4c0b2054-dfc8-40e0-80fc-8f1c10ea706c)
+6. Connectez-vous au pod et affichez les Secrets :
+  <br/>E.g. ```minikube kubectl -- exec -it rest-api-spring-boot-k8s-67c89c675c-qb8tf -- /bin/sh```<br/>
+  ![440188808-bc80d376-3274-4b62-b059-9c0e4284c105](https://github.com/user-attachments/assets/3906e9f2-e338-4371-8979-2e1264b207b0)
+
 
