@@ -374,7 +374,7 @@ EOF
 <br/>Cette politique peut-être appliquée comme suit : ```vault policy write read-policy /home/vault/read-policy.hcl```
 <br/>D'une manière générale, voici la syntaxe permettant d'appliquer une politique : ```vault policy write <policy-name> /path/to/policy.hcl```
 ### Activer et Configurer l'authentification Kubernetes
-<br/>Il ne faut pas oublier d'activer la méthode d’authentification Kubernetes dans Vault. Voici la commande : ```vault auth enable kubernetes```
+Il ne faut pas oublier d'activer la méthode d’authentification Kubernetes dans Vault. Voici la commande : ```vault auth enable kubernetes```
 <br/>Pour communiquer avec le serveur API Kubernetes, il faut également appliquer la configuration Vault comme suit :<br\>
 ```
 vault write auth/kubernetes/config \
