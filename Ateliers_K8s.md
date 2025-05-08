@@ -410,7 +410,7 @@ Pour se connecter, choisissez la méthode <b>Token</b> et saisissez la valeur <b
 ![image](https://github.com/user-attachments/assets/09554367-9c3c-4f26-ab1b-d94e51120225)
 Renseignez ensuite les champs requis pour créer un secret :
 ![image](https://github.com/user-attachments/assets/14079110-2fe6-46b5-8438-265c7a98d90d)
-Cliquez enfin sur "Save" pour créer le secret. Et voilà, vous avez un premier Secret appelé "my-vault-secret" stocké dans Vault et contenant deux entrées "username" et "password".
+<br/>Cliquez enfin sur "Save" pour créer le secret. Et voilà, vous avez un premier Secret appelé "my-vault-secret" stocké dans Vault et contenant deux entrées "username" et "password".
 ### Accéder à un Secret Vault depuis un pod applicatif
 A ce stade, nous avons :
 - installé Vault et configuré un rôle Vault (ex. <b>vault-role</b>) pour permettre au compte de service (ex. <b>rest-api-spring-boot-k8s-service-account</b>) d’accéder aux secrets stockés dans Vault.
