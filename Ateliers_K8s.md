@@ -517,7 +517,7 @@ et vérifiez l'existence de :
 6. Connectez-vous au pod et affichez les Secrets :
   <br/>E.g. ```minikube kubectl -- exec -it rest-api-spring-boot-k8s-67c89c675c-qb8tf -- /bin/sh```<br/>
  ![image](https://github.com/user-attachments/assets/a75aea84-f6ec-40cb-9073-7bb84312049b)
-#Fin des ateliers
+
 
 
 
