@@ -400,7 +400,7 @@ vault write auth/kubernetes/role/<my-role> \
    ttl=<duration>
 ```
 ### Créer des Secrets dans Vault
-Les secrets peuvent être créés via la CLI Vault, en se connectant au pod <b>vault-0</b>, ou plus simplement via l’<b>UI Vault</>. L'URL de l'UI Vault est celle du service <b>vault-ui</b> qui peut être obtenue grâce à la commande : ```minikube service vault-ui --url```
+Les secrets peuvent être créés via la CLI Vault, en se connectant au pod <b>vault-0</b>, ou plus simplement via l’<b>UI Vault</b>. L'URL de l'UI Vault est celle du service <b>vault-ui</b> qui peut être obtenue grâce à la commande : ```minikube service vault-ui --url```
 Exemple :
 ![Capture](https://github.com/user-attachments/assets/dc8c594d-c031-4f68-be11-fbf611c34147)
 <br/>Vault UI est donc accessible via l’adresse : http://192.168.59.105:31897
