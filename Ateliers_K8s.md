@@ -516,7 +516,5 @@ et vérifiez l'existence de :
 - etc.
 <br/>
 6. Connectez-vous au pod et affichez les Secrets : E.g. ```minikube kubectl -- exec -it rest-api-spring-boot-k8s-67c89c675c-qb8tf -- /bin/sh```<br/>
-![image](https://github.com/user-attachments/assets/bc80d376-3274-4b62-b059-9c0e4284c105)
-
-
+![440188808-bc80d376-3274-4b62-b059-9c0e4284c105](https://github.com/user-attachments/assets/4c0b2054-dfc8-40e0-80fc-8f1c10ea706c)
 
