@@ -140,8 +140,20 @@ Analysez les logs et vérifiez qu'il n'y a pas d'erreur dans l'application. En c
 ![Capture](https://github.com/user-attachments/assets/04097a7e-bf2c-4b2d-be74-4f7d05f80e21)
 
 ## Atelier 6. Créer, déployer et utiliser un ConfigMap
-1. Sur IntelliJ, à la racine de votre projet (au même niveau que le pom.xml), créez un fichier vide appelé deployment-configmap.yaml
-2. Complétez le Manifest deployment-configmap.yaml comme suit :<br/>
+1. Sur IntelliJ, à la racine de votre projet (au même niveau que le pom.xml), créez un fichier vide appelé configmap.yaml
+2. Complétez le configmap.yaml comme suit :
+```
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rest-api-spring-boot-k8s-configmap
+data:
+  dbHost: "db.training.mtalha.fr"
+  dbName: "mydb"
+  dbPort: "12345"
+```
+3. Sur IntelliJ, à la racine de votre projet (au même niveau que le pom.xml), créez un fichier vide appelé deployment-configmap.yaml
+4. Complétez le Manifest deployment-configmap.yaml comme suit :<br/>
 ```
 apiVersion: apps/v1
 kind: Deployment
@@ -180,12 +192,12 @@ spec:
                   name: rest-api-spring-boot-k8s-configmap
                   key: dbPort
 ```
-3. Créez le ConfigMap grâce à la commande <i>apply</i> : ```minikube kubectl -- apply -f configmap.yaml```
-4. Mettez-à-jour le déploiement grâce à la commande <i>apply</i> : ```minikube kubectl -- apply -f deployment-configmap.yaml```
-5. Vérifiez qu'un nouveau pod a bien créé et qu'il est en status RUNNING : ```minikube kubectl -- get pods```
-6. Affichez les détails du pod et vérifiez ses variables d'environnement : E.g. ```minikube kubectl -- describe pod rest-api-spring-boot-k8s-6b8779c8cd-twhx8```
+5. Créez le ConfigMap grâce à la commande <i>apply</i> : ```minikube kubectl -- apply -f configmap.yaml```
+6. Mettez-à-jour le déploiement grâce à la commande <i>apply</i> : ```minikube kubectl -- apply -f deployment-configmap.yaml```
+7. Vérifiez qu'un nouveau pod a bien créé et qu'il est en status RUNNING : ```minikube kubectl -- get pods```
+8. Affichez les détails du pod et vérifiez ses variables d'environnement : E.g. ```minikube kubectl -- describe pod rest-api-spring-boot-k8s-6b8779c8cd-twhx8```
    <br/>![Capture](https://github.com/user-attachments/assets/87eecb54-1bb8-446c-9c3a-0ec500fd0032)
-7. N'ayant pas besoin de réexposer le service, dans un navigateur web, accédez à l'endpoint de votre API pour afficher les variables d'environnement : E.g. ```http://192.168.59.100:31344/home/env```<br/>
+9. N'ayant pas besoin de réexposer le service, dans un navigateur web, accédez à l'endpoint de votre API pour afficher les variables d'environnement : E.g. ```http://192.168.59.100:31344/home/env```<br/>
 ![Capture](https://github.com/user-attachments/assets/90b8c353-c0f3-4716-9346-c85fbf88e78a)
 
 ## Atelier 7. Créer, déployer et utiliser un Secret en tant que variable d'environnement
