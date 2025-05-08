@@ -416,7 +416,7 @@ A ce stade, nous avons :
 - installé Vault et configuré un rôle Vault (ex. <b>vault-role</b>) pour permettre au compte de service (ex. <b>rest-api-spring-boot-k8s-service-account</b>) d’accéder aux secrets stockés dans Vault.
 - créé un Secret <b>my-vault-secret</b> avec deux paires clé-valeur.
 
-<br/>Nous allons maintenant créer un déploiement Kubernetes pouvant accéder à ce Secret.
+Nous allons maintenant créer un compte de service et l'associer à un POD pour accéder à ce Secret.
 #### Créer un compte de service (Service Account)
 Ce compte de service dispose d’autorisations pour le rôle Vault tel que défini dans l’étape « Créer un rôle » ci-dessus.
 Comme nous l'avons défini à l'étape "Créer un rôle", nous avons besoin d'un Service Account appelé <b>rest-api-spring-boot-k8s-service-account</b> lié au rôle <b>vault-role</b>. Ce Service Account peut être créé comme suit :
