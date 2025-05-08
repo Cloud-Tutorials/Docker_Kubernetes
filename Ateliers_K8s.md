@@ -400,15 +400,15 @@ vault write auth/kubernetes/role/<my-role> \
    ttl=<duration>
 ```
 ### Créer des Secrets dans Vault
-Les secrets peuvent être créés via la CLI Vault, en se connectant au pod <b>vault-0</b>, ou plus simplement via l’UI Vault. L'URL de l'UI Vault est celle du service <b>vault-ui</b> qui peut être obtenue grâce à la commande : ```minikube service vault-ui --url```
+Les secrets peuvent être créés via la CLI Vault, en se connectant au pod <b>vault-0</b>, ou plus simplement via l’<b>UI Vault</>. L'URL de l'UI Vault est celle du service <b>vault-ui</b> qui peut être obtenue grâce à la commande : ```minikube service vault-ui --url```
 Exemple :
 ![Capture](https://github.com/user-attachments/assets/dc8c594d-c031-4f68-be11-fbf611c34147)
-Vault UI est donc accessible via l’adresse : http://192.168.59.105:31897
+<br/>Vault UI est donc accessible via l’adresse : http://192.168.59.105:31897
 ![image](https://github.com/user-attachments/assets/a0642442-ec47-4a4d-b5bd-5c5d953dda49)
-Pour se connecter, choisissez la méthode <b>Token</b> et saisissez la valeur <b>root</b> comme valeur du token.
+<br/>Pour se connecter, choisissez la méthode <b>Token</b> et saisissez la valeur <b>root</b> comme valeur du token.
 </br>Accédez à l'onglet <b>Secrets Engines > secret</b> et cliquez ensuite sur <b>Create secret</b> en haut à droite.
 ![image](https://github.com/user-attachments/assets/09554367-9c3c-4f26-ab1b-d94e51120225)
-Renseignez ensuite les champs requis pour créer un secret :
+<br/>Renseignez ensuite les champs requis pour créer un secret :
 ![image](https://github.com/user-attachments/assets/14079110-2fe6-46b5-8438-265c7a98d90d)
 <br/>Cliquez enfin sur "Save" pour créer le secret. Et voilà, vous avez un premier Secret appelé "my-vault-secret" stocké dans Vault et contenant deux entrées "username" et "password".
 ### Accéder à un Secret Vault depuis un pod applicatif
