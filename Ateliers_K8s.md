@@ -433,7 +433,7 @@ metadata:
 3. Créez le Service Account grâce à la commande apply : ```minikube kubectl -- apply -f service-account.yaml```
 #### Créer un pod applicatif ayant accès au Secret dans Vault
 1. Sur IntelliJ, à la racine de votre projet (au même niveau que le pom.xml), créez un fichier vide appelé deployment-secrets-vault.yaml
-2. Complétez le Manifest deployment-secrets-vault.yaml comme suit :<br/>
+2. Complétez le Manifest deployment-secrets-vault.yaml comme suit :
 ```
 #how to write a deployment spec : https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#writing-a-deployment-spec
 apiVersion: apps/v1
@@ -505,9 +505,9 @@ spec:
             secretName: rest-api-spring-boot-k8s-secret
 ```
 <b>Remarque : </b>Ce manifeste de déploiement crée une réplique (replicas: 1) d'un pod rest-api-spring-boot-k8s configuré pour récupérer en toute sécurité les secrets de Vault. L'agent Vault injecte le secret my-vault-secret dans le pod, conformément aux règles de sécurité spécifiées. Les secrets sont stockés dans le système de fichiers du pod et sont accessibles à l'application exécutée dans le conteneur. Le compte de service rest-api-spring-boot-k8s-service-account, doté des autorisations nécessaires, est utilisé pour l'authentification auprès de Vault.<br/>
- 3. Mettez-à-jour le déploiement grâce à la commande <i>apply</i> : ```minikube kubectl -- apply -f deployment-secrets-vault.yaml```<br/>
- 4. Vérifiez qu'un nouveau pod a bien créé et qu'il est en status RUNNING : ```minikube kubectl -- get pods```<br/>
- 5. Affichez les détails du pod : E.g. ```minikube kubectl -- describe pod rest-api-spring-boot-k8s-67c89c675c-qb8tf```<br/>
+3. Mettez-à-jour le déploiement grâce à la commande <i>apply</i> : ```minikube kubectl -- apply -f deployment-secrets-vault.yaml```<br/>
+4. Vérifiez qu'un nouveau pod a bien créé et qu'il est en status RUNNING : ```minikube kubectl -- get pods```<br/>
+5. Affichez les détails du pod : E.g. ```minikube kubectl -- describe pod rest-api-spring-boot-k8s-67c89c675c-qb8tf```<br/>
 et vérifiez l'existence de :
 <br/>
  6. Connectez-vous au pod applicatif :
