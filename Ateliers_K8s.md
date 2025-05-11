@@ -209,8 +209,8 @@ kind: Secret
 metadata:
   name: rest-api-spring-boot-k8s-secret
 data:
-  dbUserName: "bXRhbGhh" # "username" encodé en base64
-  dbPassword: "VEFMSEFfUGFzc3cwcmQ=" # "password" encodé en base64
+  dbUserName: "bXRhbGhh" # "mtalha" encodé en base64
+  dbPassword: "VEFMSEFfUGFzc3cwcmQ=" # "TALHA_Passw0rd" encodé en base64
 ```
 3. Sur IntelliJ, à la racine de votre projet (au même niveau que le pom.xml), créez un fichier vide appelé deployment-secret-env.yaml
 4. Complétez le Manifest deployment-secret-env.yaml comme suit :<br/>
