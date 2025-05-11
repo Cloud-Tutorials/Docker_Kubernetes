@@ -212,8 +212,8 @@ data:
   dbUserName: "bXRhbGhh" # "mtalha" encodé en base64
   dbPassword: "VEFMSEFfUGFzc3cwcmQ=" # "TALHA_Passw0rd" encodé en base64
 ```
-3. Sur IntelliJ, à la racine de votre projet (au même niveau que le pom.xml), créez un fichier vide appelé deployment-secret-env.yaml
-4. Complétez le Manifest deployment-secret-env.yaml comme suit :<br/>
+3. Sur IntelliJ, à la racine de votre projet (au même niveau que le pom.xml), créez un fichier vide appelé deployment-secrets-env.yaml
+4. Complétez le Manifest deployment-secrets-env.yaml comme suit :<br/>
 ```
 apiVersion: apps/v1
 kind: Deployment
@@ -265,7 +265,7 @@ spec:
                   key: dbPassword
 ```
 5. Créez le Secret grâce à la commande apply : ```minikube kubectl -- apply -f secret.yaml```
-6. Mettez-à-jour le déploiement grâce à la commande <i>apply</i> : ```minikube kubectl -- apply -f deployment-secret-env.yaml```
+6. Mettez-à-jour le déploiement grâce à la commande <i>apply</i> : ```minikube kubectl -- apply -f deployment-secrets-env.yaml```
 7. Vérifiez qu'un nouveau pod a bien créé et qu'il est en status RUNNING : ```minikube kubectl -- get pods```
 8. Affichez les détails du pod et vérifiez de nouveau les variables d'environnement : E.g. ```minikube kubectl -- describe pod rest-api-spring-boot-k8s-6cdcf644c7-6nmn8```
 ![Capture](https://github.com/user-attachments/assets/b360db81-90a8-403c-b594-45345292365d)
@@ -273,8 +273,8 @@ spec:
 ![Capture](https://github.com/user-attachments/assets/f81a4556-0047-464f-9161-e530a821e457)
 
 ## Atelier 8. Créer, déployer et utiliser un Secret en tant que fichier monté dans un volume
-1. Sur IntelliJ, à la racine de votre projet (au même niveau que le pom.xml), créez un fichier vide appelé deployment-secret-file.yaml
-2. Complétez le Manifest deployment-secret-file.yaml comme suit :<br/>
+1. Sur IntelliJ, à la racine de votre projet (au même niveau que le pom.xml), créez un fichier vide appelé deployment-secrets-file.yaml
+2. Complétez le Manifest deployment-secrets-file.yaml comme suit :<br/>
 ```
 apiVersion: apps/v1
 kind: Deployment
@@ -333,7 +333,7 @@ spec:
           secret:
             secretName: rest-api-spring-boot-k8s-secret
 ```
-3. Le Secret existe déjà, il suffit de mettre-à-jour le déploiement grâce à la commande <i>apply</i> : ```minikube kubectl -- apply -f deployment-secret-file.yaml```
+3. Le Secret existe déjà, il suffit de mettre-à-jour le déploiement grâce à la commande <i>apply</i><br/> : ```minikube kubectl -- apply -f deployment-secrets-file.yaml```
 4. Vérifiez qu'un nouveau pod a bien créé et qu'il est en status RUNNING : ```minikube kubectl -- get pods```
 5. Affichez les détails du pod et vérifiez qu'un nouveau volumen a été monté sur /etc/secret : E.g. ```minikube kubectl -- describe pod rest-api-spring-boot-k8s-6ccc44b4c4-rfz9b```
    ![Capture](https://github.com/user-attachments/assets/cac5c9dc-4740-46bd-b62e-5655148e17fd)
