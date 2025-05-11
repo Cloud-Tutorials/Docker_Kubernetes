@@ -349,7 +349,7 @@ spec:
 <br/>Sur une machine Windows, Helm peut être installé en téléchargeant l’exécutable depuis le site officiel d’[Helm](https://helm.sh/docs/intro/install/) et en l’ajoutant à la variable d’environnement PATH. <br/>L’installation d’Helm peut être vérifiée en affichant la version installée : ```helm version```
 ### Installation de HashiCorp Vault
 HashiCorp Vault peut être installé depuis le dépôt Helm de HashiCorp. Pour cela, il faut :
-1. ajouter le référentiel HashiCorp Helm à votre configuration Helm grâce à la commande : ```helm repo add hashicorp https://helm.releases.hashicorp.com```
+1. ajouter le référentiel HashiCorp Helm à votre configuration Helm grâce à la commande :<br/> ```helm repo add hashicorp https://helm.releases.hashicorp.com```
 2. et ensuite installer Vault à l'aide d'une Chart Helm du référentiel HashiCorp avec la commande suivante :<br/>
 ```
 helm install vault hashicorp/vault --set='server.dev.enabled=true' --set='ui.enabled=true' --set='ui.serviceType=LoadBalancer'
@@ -361,7 +361,7 @@ helm install vault hashicorp/vault --set='server.dev.enabled=true' --set='ui.ena
  
 ## Atelier 10. Gérer les Secrets K8s avec HashiCorp Vault
 Cette étape consiste à configurer les politiques de sécurité et les méthodes d'authentification de Vault pour gérer les accès aux Secrets. Cela permet de garantir que seuls les pods autorisés peuvent récupérer les données sensibles de Vault.
-<br/>Pour effectuer la configuration initiale, il faut se connecter au pod <b>vault-0</b> avec la commande suivante :<br/> ```minikube kubectl -- exec -it vault-0 -- /bin/sh```
+<br/>Pour effectuer la configuration initiale, il faut se connecter au pod <b>vault-0</b> avec la commande suivante :<br/>```minikube kubectl -- exec -it vault-0 -- /bin/sh```
 ### Créer et Appliquer une politique de sécurité
 Une fois connecté au pod <b>vault-0</b>, il faut y créer une politique autorisant la lecture des secrets. Cette politique sera associée à un rôle permettant d'accorder l'accès à des comptes de service Kubernetes spécifiques. Les politiques sont écrites en HCL (Hashicorp Configuration Language) ou JSON et décrivent les chemins dans Vault auxquels une machine ou un utilisateur est autorisé à accéder. Voici un exempe de création d'une politique :<br/>
 ```
