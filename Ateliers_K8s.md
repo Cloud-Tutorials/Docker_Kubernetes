@@ -514,7 +514,7 @@ et vérifiez l'existence de :
 * le token d'accès à Vault dans la variable d'environnement VAULT_CONFIG
 * le volume /vault/secrets qui contient le Secret
 * etc.
-<br/>
+
  6. Connectez-vous au pod applicatif :
   <br/>E.g.
   ```
