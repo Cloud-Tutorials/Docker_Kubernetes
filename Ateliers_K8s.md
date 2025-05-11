@@ -333,7 +333,7 @@ spec:
           secret:
             secretName: rest-api-spring-boot-k8s-secret
 ```
-3. Le Secret existe déjà, il suffit de mettre-à-jour le déploiement grâce à la commande <i>apply</i><br/> : ```minikube kubectl -- apply -f deployment-secrets-file.yaml```
+3. Le Secret existe déjà, il suffit de mettre-à-jour le déploiement grâce à la commande <i>apply</i>:<br/> ```minikube kubectl -- apply -f deployment-secrets-file.yaml```
 4. Vérifiez qu'un nouveau pod a bien créé et qu'il est en status RUNNING : ```minikube kubectl -- get pods```
 5. Affichez les détails du pod et vérifiez qu'un nouveau volumen a été monté sur /etc/secret : E.g. ```minikube kubectl -- describe pod rest-api-spring-boot-k8s-6ccc44b4c4-rfz9b```
    ![Capture](https://github.com/user-attachments/assets/cac5c9dc-4740-46bd-b62e-5655148e17fd)
