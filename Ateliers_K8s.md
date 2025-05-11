@@ -509,15 +509,15 @@ spec:
 4. Vérifiez qu'un nouveau pod a bien créé et qu'il est en status RUNNING : ```minikube kubectl -- get pods```<br/>
 5. Affichez les détails du pod : E.g. ```minikube kubectl -- describe pod rest-api-spring-boot-k8s-67c89c675c-qb8tf```<br/>
 et vérifiez l'existence de :
-6. Connectez-vous au pod applicatif :
+6. <br/>Connectez-vous au pod applicatif :
   <br/>E.g.
   ```
   minikube kubectl -- exec -it rest-api-spring-boot-k8s-67c89c675c-qb8tf -- /bin/sh
   ```
-7. Vous pouvez afficher le Secret <b>my-vault-secret</b> qui se trouve dans le voulme <b>/vault/secrets/</b>
+7. <br/>Vous pouvez afficher le Secret <b>my-vault-secret</b> qui se trouve dans le voulme <b>/vault/secrets/</b>
   Voici un exemple :<br/>
  ![image](https://github.com/user-attachments/assets/a75aea84-f6ec-40cb-9073-7bb84312049b)
-<br/>
+
 
 
 
